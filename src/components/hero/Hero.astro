@@ -1,0 +1,59 @@
+---
+import type { SanityImage } from "../../utils/utils";
+import HeroMain from "../hero/HeroMain";
+import IntroSpan from "../hero/IntroSpan.astro";
+
+type Props = {
+  outlinedImage: SanityImage;
+  heroText: {
+    first: string;
+    second: string;
+    third: string;
+    fourth: string;
+  };
+};
+
+const { outlinedImage, heroText }: Props = Astro.props;
+---
+
+<section class="3xl:mx-8 h-[40vh] flex-grow" id="heroContainer">
+  <p
+    class="my-auto mx-8 h-[60px] xl:h-[150px] xl:w-[650px] overflow-hidden font-poppins text-base md:text-2xl xl:text-5xl absolute top-2/4 left-0 xl:left-2/4 -translate-y-1/2 xl:-translate-x-1/2 z-10 animate-[hideVisibility_1s_3.5s_linear_forwards]"
+  >
+    <IntroSpan introAnimation="animate-[slideInOut_4s_ease-in-out_forwards]">
+      Hallo,
+    </IntroSpan>{" "}
+    <IntroSpan
+      introAnimation="animate-[slideInOut_4s_0.1s_ease-in-out_forwards]"
+    >
+      Mein Name
+    </IntroSpan>{" "}
+    <IntroSpan
+      introAnimation="animate-[slideInOut_4s_0.2s_ease-in-out_forwards]"
+    >
+      ist
+    </IntroSpan>{" "}
+    <IntroSpan
+      introAnimation="animate-[slideInOut_4s_0.3s_ease-in-out_forwards]"
+    >
+      Martin
+    </IntroSpan>
+    <br />
+    <IntroSpan
+      introAnimation="animate-[slideInOut_4s_0.4s_ease-in-out_forwards]"
+    >
+      Hello,
+    </IntroSpan>{" "}
+    <IntroSpan
+      introAnimation="animate-[slideInOut_4s_0.5s_ease-in-out_forwards]"
+    >
+      I&apos;m
+    </IntroSpan>{" "}
+    <IntroSpan
+      introAnimation="animate-[slideInOut_4s_0.6s_ease-in-out_forwards]"
+    >
+      Martin
+    </IntroSpan>
+  </p>
+  <HeroMain image={outlinedImage} heroText={heroText} client:idle />
+</section>

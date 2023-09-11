@@ -1,0 +1,94 @@
+---
+import { Image } from "astro:assets";
+import { urlFor, type SanityImage, type Lang } from "../../utils/utils";
+
+type Props = {
+  image: SanityImage;
+  aboutMeText: string;
+  text: string;
+  circleFontSize: string;
+  lang: Lang;
+};
+
+const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
+---
+
+<section
+  class="mr-8 ml-2 md:m-8 mb-2 xl:mx-16 3xl:mx-24 3xl:mt-16 flex justify-between items-center overflow-hidden"
+>
+  <a href={lang === "en" ? "/en/about-me" : "/ueber-mich"}>
+    <div
+      class="hidden xl:block w-fit translate-y-[25vh] relative animate-[slideIn_1s_4.3s_ease-in-out_forwards] motion-reduce:animate-none motion-reduce:translate-y-0"
+    >
+      <Image
+        width={2560}
+        height={2560}
+        class="w-[100px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 motion-reduce:animate-none"
+        src={urlFor(image).size(2560, 2560).url()}
+        alt="flower icon"
+      />
+      <svg
+        viewBox="0 0 100 100"
+        width="180"
+        height="180"
+        class="animate-[circleRotate_30s_linear_infinite] motion-reduce:animate-none"
+      >
+        <defs>
+          <path
+            id="circle"
+            d="
+                        M 50, 50
+                        m -37, 0
+                        a 37,37 0 1,1 74,0
+                        a 37,37 0 1,1 -74,0"
+          ></path>
+        </defs>
+        <text
+          font-size={circleFontSize}
+          class="fill-white uppercase font-poppins"
+        >
+          <textPath xlink:href="#circle">{aboutMeText}</textPath>
+        </text>
+      </svg>
+    </div>
+    <div
+      class="xl:hidden w-fit translate-y-[25vh] relative animate-[slideIn_1s_4.8s_ease-in-out_forwards] motion-reduce:animate-none motion-reduce:translate-y-0"
+    >
+      <Image
+        width={500}
+        height={500}
+        class="w-[70px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 motion-reduce:animate-none"
+        src={urlFor(image).size(500, 500).url()}
+        alt="flower icon"
+      />
+      <svg
+        viewBox="0 0 100 100"
+        width="130"
+        height="130"
+        class="animate-[circleRotate_30s_linear_infinite] motion-reduce:animate-none"
+      >
+        <defs>
+          <path
+            id="circle"
+            d="
+                        M 50, 50
+                        m -37, 0
+                        a 37,37 0 1,1 74,0
+                        a 37,37 0 1,1 -74,0"
+          ></path>
+        </defs>
+        <text
+          font-size={circleFontSize}
+          class="fill-white uppercase font-poppins"
+        >
+          <textPath xlink:href="#circle">{aboutMeText}</textPath>
+        </text>
+      </svg>
+    </div>
+  </a>
+  <p
+    class="w-full whitespace-pre xl:w-[430px] xl:mr-16 translate-y-[50vh] opacity-40 text-right xl:text-left text-[.4rem] xl:text-base font-poppins leading-[.4rem] xl:leading-6 animate-[slideInMob100_2s_3.5s_ease-in-out_forwards] motion-reduce:animate-none motion-reduce:translate-y-0"
+  >
+    {text}
+  </p>
+</section>

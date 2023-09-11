@@ -1,0 +1,59 @@
+---
+import HeaderNav from "../layouts/HeaderNav.astro";
+import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/footer/Footer.astro";
+
+import Layout from "../layouts/Layout.astro";
+import { getNavbar } from "../utils/query";
+
+const { pathname } = Astro.url;
+
+const navData = await getNavbar();
+
+const langRegex = /\/en\b/;
+const lang = pathname.match(langRegex) ?? "";
+
+const seo = {
+    title:
+        lang[0] === "/en"
+            ? "Something went wrong... | Oh Teezy"
+            : "Etwas ging schief... | Oh Teezy",
+    description:
+        lang[0] === "/en"
+            ? "Could not find requested page"
+            : "Angeforderte Seite konnte nicht gefunden werden",
+    keywords: "",
+};
+---
+
+<Layout lang={lang[0] === "/en" ? "en" : "de"} seo={seo}>
+    <HeaderNav>
+        <Navbar
+            lang={lang[0] === "/en" ? "en" : "de"}
+            contactButtonText="Kontakt"
+            pathname={pathname}
+            navData={navData}
+            client:load
+            transition:persist="navbar"
+        />
+    </HeaderNav>
+    <main
+        class="flex flex-col justify-center items-center gap-8 flex-grow font-poppins"
+    >
+        <h1 class="text-4xl">
+            {
+                lang[0] === "/en"
+                    ? "Oops... Could not find page."
+                    : "Oops... Seite konnte nicht gefunden werden."
+            }
+        </h1>
+        <p class="text-xl">
+            {lang[0] === "/en" ? "Go to " : "Gehe zu "}<a
+                href={lang[0] === "/en" ? "/en" : "/"}
+                class="underline hover:text-orange transition-color duration-200 ease-in-out"
+                >Home</a
+            >
+        </p>
+    </main>
+    <Footer lang="en" />
+</Layout>

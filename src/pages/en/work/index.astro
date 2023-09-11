@@ -1,0 +1,40 @@
+---
+import Layout, { type SeoEN } from "../../../layouts/Layout.astro";
+import HeaderNav from "../../../layouts/HeaderNav.astro";
+
+import NavbarMenu, { type NavData } from "../../../components/navbar/Navbar";
+import Work from "../../../components/work/Work";
+import Footer from "../../../components/footer/Footer.astro";
+
+import { getNavbar, getWork } from "../../../utils/query";
+
+type Work = {
+    seo: SeoEN;
+};
+
+const navData: NavData = await getNavbar();
+const data: Work = await getWork();
+
+const { pathname } = Astro.url;
+
+const seo = {
+    title: data?.seo.titleEN,
+    description: data?.seo.descriptionEN,
+    keywords: data?.seo.keywordsEN,
+};
+---
+
+<Layout lang="en" seo={seo}>
+    <HeaderNav>
+        <NavbarMenu
+            lang="en"
+            contactButtonText="Get in touch"
+            navData={navData}
+            pathname={pathname}
+            client:load
+            transition:persist="navbar"
+        />
+    </HeaderNav>
+    <Work lang="en" client:idle />
+    <Footer lang="en" />
+</Layout>

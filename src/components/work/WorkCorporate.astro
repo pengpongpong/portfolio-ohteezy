@@ -1,0 +1,79 @@
+---
+import { urlFor, type SanityImage } from "../../utils/utils";
+import ProjectCard from "../project-card/ProjectCard.astro";
+import ProjectCardBig from "../project-card/ProjectCardBig.astro";
+
+type ProjectSmall = {
+    leftImageText: string;
+    leftImageAlt: string;
+    leftImage: SanityImage;
+    rightImageText: string;
+    rightImageAlt: string;
+    rightImage: SanityImage;
+    _type: "projectSmall";
+};
+
+type ProjectBig = {
+    sketch1ImageAlt: string;
+    sketch1Image: SanityImage;
+    sketch2ImageAlt: string;
+    sketch2Image: SanityImage;
+    posterImageAlt: string;
+    posterImage: SanityImage;
+    _type: "projectBig";
+};
+
+export interface WorkCorporateType {
+    projects: [ProjectSmall | ProjectBig];
+}
+
+type Props = {
+    data: WorkCorporateType;
+};
+
+const { data }: Props = Astro.props;
+---
+
+<section>
+    {
+        data.projects?.map((obj) => {
+            if (obj._type === "projectSmall") {
+                return (
+                    <ProjectCard
+                        leftImageText={obj.leftImageText}
+                        leftImageSrc={urlFor(obj.leftImage)
+                            .size(2560, 1887)
+                            .url()}
+                        leftImageAlt={obj.leftImageAlt}
+                        rightImageText={obj.rightImageText}
+                        rightImageSrc={urlFor(obj.rightImage)
+                            .size(3775, 2967)
+                            .url()}
+                        rightImageAlt={obj.rightImageAlt}
+                    />
+                );
+            }
+        })
+    }
+    <hr class="my-8 xl:my-16 max-w-[2000px] mx-auto" />
+    {
+        data.projects?.map((obj) => {
+            if (obj._type === "projectBig") {
+                return (
+                    <ProjectCardBig
+                        sketch1={urlFor(obj.sketch1Image)
+                            .size(1760, 2400)
+                            .url()}
+                        sketch1Alt={obj.sketch1ImageAlt}
+                        sketch2={urlFor(obj.sketch2Image)
+                            .size(1760, 2400)
+                            .url()}
+                        sketch2Alt={obj.sketch2ImageAlt}
+                        poster={urlFor(obj.posterImage).size(1816, 5800).url()}
+                        posterAlt={obj.posterImageAlt}
+                    />
+                );
+            }
+        })
+    }
+</section>

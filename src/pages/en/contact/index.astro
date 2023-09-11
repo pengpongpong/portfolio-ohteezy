@@ -1,0 +1,56 @@
+---
+import Layout, { type SeoEN } from "../../../layouts/Layout.astro";
+import HeaderNav from "../../../layouts/HeaderNav.astro";
+
+import Navbar, { type NavData } from "../../../components/navbar/Navbar";
+import Footer from "../../../components/footer/Footer.astro";
+
+import ContactForm from "../../../components/contact/ContactForm";
+import { getContact, getNavbar } from "../../../utils/query";
+import ContactLinks from "../../../components/contact/ContactLinks.astro";
+
+type Contact = {
+  email: string;
+  instagram: string;
+  linkedIn: string;
+  seo: SeoEN;
+};
+
+const { pathname } = Astro.url;
+
+const data: Contact = await getContact(true);
+const navData: NavData = await getNavbar();
+
+const api: string = import.meta.env.API_AWS;
+const url: string = import.meta.env.URL_AWS;
+
+const seo = {
+  title: data.seo?.titleEN,
+  description: data.seo?.descriptionEN,
+  keywords: data.seo?.keywordsEN,
+};
+---
+
+<Layout lang="en" seo={seo}>
+  <HeaderNav>
+    <Navbar
+      lang="en"
+      contactButtonText="Get in touch"
+      pathname={pathname}
+      navData={navData}
+      client:load
+      transition:persist="navbar"
+    />
+  </HeaderNav>
+  <main class="m-8 xl:m-16 flex flex-col flex-grow justify-center items-center">
+    <ContactLinks
+      email={data.email}
+      instagram={data.instagram}
+      linkedIn={data.linkedIn}
+    />
+    <section class="my-12 w-full max-w-[600px]">
+      <ContactForm lang="en" api={api} url={url} client:visible />
+    </section>
+  </main>
+  <Footer lang="en" />
+</Layout>

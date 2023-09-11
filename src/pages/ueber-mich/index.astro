@@ -1,0 +1,55 @@
+---
+import Layout, { type Seo } from "../../layouts/Layout.astro";
+import HeaderNav from "../../layouts/HeaderNav.astro";
+
+import Navbar, { type NavData } from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/Footer.astro";
+
+import { getAboutMe, getNavbar } from "../../utils/query";
+import AboutMe, {
+  type AboutMeType,
+} from "../../components/about-me/AboutMe.astro";
+import { urlFor } from "../../utils/utils";
+
+interface AboutMeData extends AboutMeType {
+  bio: string;
+  seo: Seo;
+}
+
+const { pathname } = Astro.url;
+
+const data: AboutMeData = await getAboutMe();
+const navData: NavData = await getNavbar();
+
+const seo = {
+  title: data.seo?.title,
+  description: data.seo?.description,
+  keywords: data.seo?.keywords,
+  image: {
+    url: urlFor(data.profileImage).size(2048, 2048).url(),
+    alt: "logo",
+    width: "2048",
+    height: "2048"
+  }
+};
+
+---
+
+<Layout lang="de" seo={seo}>
+  <HeaderNav>
+    <Navbar
+      lang="de"
+      contactButtonText="Kontakt"
+      pathname={pathname}
+      navData={navData}
+      client:load
+      transition:persist="navbar"
+    />
+  </HeaderNav>
+  <main class="m-8 flex flex-col justify-start items-center gap-16 flex-grow">
+    <AboutMe data={data}>
+      {data?.bio}
+    </AboutMe>
+  </main>
+  <Footer lang="de" />
+</Layout>

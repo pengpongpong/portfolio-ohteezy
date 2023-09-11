@@ -1,0 +1,47 @@
+---
+import Layout, { type Seo } from "../../../layouts/Layout.astro";
+import HeaderNav from "../../../layouts/HeaderNav.astro";
+
+import NavbarMenu, { type NavData } from "../../../components/navbar/Navbar";
+import Footer from "../../../components/footer/Footer.astro";
+
+import { getNavbar, getWorkPoster } from "../../../utils/query";
+import WorkPoster, {
+    type WorkPosterType,
+} from "../../../components/work/WorkPoster.astro";
+
+interface WorkPosterData extends WorkPosterType {
+    seo: Seo;
+}
+
+const navData: NavData = await getNavbar();
+const data: WorkPosterData = await getWorkPoster();
+
+const { pathname } = Astro.url;
+
+const seo = {
+    title: data.seo?.title,
+    description: data.seo?.description,
+    keywords: data.seo?.keywords,
+};
+---
+
+<Layout lang="de" seo={seo}>
+    <HeaderNav>
+        <NavbarMenu
+            lang="de"
+            contactButtonText="Kontakt"
+            pathname={pathname}
+            navData={navData}
+            client:load
+            transition:persist="navbar"
+        />
+    </HeaderNav>
+    <main class="m-8 xl:m-16 flex-grow">
+        <h1 class="mb-8 x:mb-12 font-poppins text-center text-4xl xl:text-6xl">
+            Poster Design
+        </h1>
+        <WorkPoster data={data} />
+    </main>
+    <Footer lang="de" />
+</Layout>

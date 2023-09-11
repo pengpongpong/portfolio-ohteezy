@@ -1,0 +1,64 @@
+---
+import Layout, { type Seo } from "../layouts/Layout.astro";
+import HeaderNav from "../layouts/HeaderNav.astro";
+
+import Navbar, { type NavData } from "../components/navbar/Navbar";
+import Hero from "../components/hero/Hero.astro";
+import FooterHero from "../components/footer/FooterHero.astro";
+
+import { urlFor, type SanityImage } from "../utils/utils";
+import { getHome, getNavbar } from "../utils/query";
+
+type Home = {
+  image: SanityImage;
+  imageAboutMe: SanityImage;
+  seo: Seo;
+};
+
+const navData: NavData = await getNavbar();
+const data: Home = await getHome();
+
+const { pathname } = Astro.url;
+
+const seo = {
+  title: data.seo?.title,
+  description: data.seo?.description,
+  keywords: data.seo?.keywords,
+  image: {
+    url: urlFor(navData.logo).size(2560, 566).url(),
+    alt: "logo",
+    width: "100",
+    height: "22"
+  }
+};
+
+const heroText = {
+  first: "Freelance",
+  second: "Grafik Designer",
+  third: "aus",
+  fourth: "Österreich",
+};
+---
+
+<Layout lang="de" seo={seo}>
+  <HeaderNav>
+    <Navbar
+      lang="de"
+      contactButtonText="Kontakt"
+      pathname={pathname}
+      navData={navData}
+      client:load
+      transition:persist="navbar"
+    />
+  </HeaderNav>
+  <main class="mx-8 xl:mx-16 flex-grow flex flex-col">
+    <Hero outlinedImage={data.image} heroText={heroText} />
+  </main>
+  <FooterHero
+    lang="de"
+    image={data.imageAboutMe}
+    aboutMeText="mehr über mich · mehr über mich ·"
+    circleFontSize="13"
+    text={`Layout- und Logo Gestaltung, Illustrationen, Cover Art,\nPoster & Print Design, Lettering & Font Design,\nKonzept- und Kommunikationsdesign, Social Media,\nFotoretusche, Typografie`}
+  />
+</Layout>

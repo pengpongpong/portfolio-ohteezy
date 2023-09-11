@@ -1,0 +1,47 @@
+---
+import Layout, { type Seo } from "../../../layouts/Layout.astro";
+import HeaderNav from "../../../layouts/HeaderNav.astro";
+
+import NavbarMenu, { type NavData } from "../../../components/navbar/Navbar";
+import Footer from "../../../components/footer/Footer.astro";
+
+import { getNavbar, getWorkCorporate } from "../../../utils/query";
+import WorkCorporate, {
+    type WorkCorporateType,
+} from "../../../components/work/WorkCorporate.astro";
+
+interface WorkCorporateData extends WorkCorporateType {
+    seo: Seo;
+}
+
+const navData: NavData = await getNavbar();
+const data: WorkCorporateData = await getWorkCorporate();
+
+const { pathname } = Astro.url;
+
+const seo = {
+    title: data.seo?.title,
+    description: data.seo?.description,
+    keywords: data.seo?.keywords,
+};
+---
+
+<Layout lang="de" seo={seo}>
+    <HeaderNav>
+        <NavbarMenu
+            lang="de"
+            contactButtonText="Kontakt"
+            pathname={pathname}
+            navData={navData}
+            client:load
+            transition:persist="navbar"
+        />
+    </HeaderNav>
+    <main class="m-8 xl:m-24 flex-grow">
+        <h1 class="mb-8 xl:mb-12 font-poppins text-center text-4xl xl:text-6xl">
+            Corporate Design
+        </h1>
+        <WorkCorporate data={data} />
+    </main>
+    <Footer lang="de" />
+</Layout>

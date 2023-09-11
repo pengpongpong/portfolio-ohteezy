@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import { type SanityImage, urlFor } from "../../utils/utils";
+
+type ImageVertical = {
+    imageAlt: string;
+    image: SanityImage;
+    _type: "imageVertical";
+};
+
+type ImageHorizontal = {
+    imageAlt: string;
+    image: SanityImage;
+    _type: "imageHorizontal";
+};
+
+export interface WorkSketchType {
+    sketch: [ImageVertical | ImageHorizontal];
+}
+
+type Props = {
+    data: WorkSketchType;
+};
+const { data } = Astro.props;
+---
+
+<section
+    class="max-w-[1300px] mx-auto flex gap-8 flex-wrap justify-center items-center"
+>
+    {
+        data.sketch?.map((obj) => {
+            if (obj._type === "imageVertical") {
+                return (
+                    <Image
+                        width={1689}
+                        height={2560}
+                        loading="eager"
+                        class="w-[25rem] h-[35rem]"
+                        src={urlFor(obj.image).size(1689, 2560).url()}
+                        alt={obj.imageAlt}
+                    />
+                );
+            }
+            if (obj._type === "imageHorizontal") {
+                return (
+                    <Image
+                        width={1664}
+                        height={2560}
+                        loading="eager"
+                        class="w-full h-fit xl:w-fit xl:h-[30rem]"
+                        src={urlFor(obj.image).size(2560, 1664).url()}
+                        alt={obj.imageAlt}
+                    />
+                );
+            }
+        })
+    }
+</section>

@@ -1,0 +1,64 @@
+---
+import Layout, { type SeoEN } from "../../layouts/Layout.astro";
+import HeaderNav from "../../layouts/HeaderNav.astro";
+
+import Navbar, { type NavData } from "../../components/navbar/Navbar";
+import Hero from "../../components/hero/Hero.astro";
+import FooterHero from "../../components/footer/FooterHero.astro";
+
+import { urlFor, type SanityImage } from "../../utils/utils";
+import { getHome, getNavbar } from "../../utils/query";
+
+type Home = {
+  image: SanityImage;
+  imageAboutMe: SanityImage;
+  seo: SeoEN;
+};
+
+const navData: NavData = await getNavbar();
+const data: Home = await getHome();
+
+const { pathname } = Astro.url;
+
+const seo = {
+  title: data.seo?.titleEN,
+  description: data.seo?.descriptionEN,
+  keywords: data.seo?.keywordsEN,
+  image: {
+    url: urlFor(navData.logo).size(2560, 566).url(),
+    alt: "logo",
+    width: "100",
+    height: "22"
+  }
+};
+
+const heroText = {
+  first: "Freelance",
+  second: "Graphic Designer",
+  third: "based in",
+  fourth: "Austria",
+};
+---
+
+<Layout lang="en" seo={seo}>
+  <HeaderNav>
+    <Navbar
+      lang="en"
+      contactButtonText="Get in touch"
+      pathname={pathname}
+      navData={navData}
+      client:load
+      transition:persist="navbar"
+    />
+  </HeaderNav>
+  <main class="mx-8 xl:mx-16 flex-grow flex flex-col">
+    <Hero outlinedImage={data.image} heroText={heroText} />
+  </main>
+  <FooterHero
+    lang="en"
+    image={data.imageAboutMe}
+    aboutMeText="more about me · more about me ·"
+    circleFontSize="13.3"
+    text={`Layout- and Logo design, Illustration, Cover Art,\nPoster & Print Design, Lettering & Font Design,\nConcept- und Communicationdesign, Social Media,\nPhoto retouching, Typografie`}
+  />
+</Layout>

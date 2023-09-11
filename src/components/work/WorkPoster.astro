@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+import { urlFor, type SanityImage } from "../../utils/utils";
+
+type PosterSmall = {
+    imageAlt: string;
+    image: SanityImage;
+    _type: "posterImageSmall";
+};
+
+type PosterBig = {
+    imageAlt: string;
+    image: SanityImage;
+    _type: "posterImageBig";
+};
+export interface WorkPosterType {
+    poster: [PosterSmall | PosterBig];
+};
+
+type Props = {
+    data: WorkPosterType;
+};
+
+const { data }: Props = Astro.props;
+---
+
+<section class="flex flex-col justify-center items-center">
+    <div class="mb-4 flex flex-col xl:flex-row gap-4 flex-wrap">
+        {
+            data.poster?.map((obj) => {
+                if (obj._type === "posterImageSmall") {
+                    return (
+                        <Image
+                            width={1440}
+                            height={2560}
+                            loading="eager"
+                            class="w-fit xl:w-[24rem] h-fit object-contain"
+                            src={urlFor(obj.image).size(2800, 4000).url()}
+                            alt={obj.imageAlt}
+                        />
+                    );
+                }
+            })
+        }
+    </div>
+    <div class="flex flex-col xl:flex-row gap-4">
+        {
+            data.poster?.map((obj) => {
+                if (obj._type === "posterImageBig") {
+                    return (
+                        <Image
+                            width={2560}
+                            height={2560}
+                            loading="eager"
+                            class="w-[49rem] h-fit object-contain"
+                            src={urlFor(obj.image).size(2560, 2560).url()}
+                            alt={obj.imageAlt}
+                        />
+                    );
+                }
+            })
+        }
+    </div>
+</section>
