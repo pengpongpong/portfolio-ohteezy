@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import { type SanityImage, urlFor } from "../../utils/utils";
 
 type ImageVertical = {
@@ -31,7 +30,7 @@ const { data } = Astro.props;
         data.sketch?.map((obj) => {
             if (obj._type === "imageVertical") {
                 return (
-                    <Image
+                    <img
                         width={1689}
                         height={2560}
                         loading="eager"
@@ -43,7 +42,7 @@ const { data } = Astro.props;
             }
             if (obj._type === "imageHorizontal") {
                 return (
-                    <Image
+                    <img
                         width={1664}
                         height={2560}
                         loading="eager"

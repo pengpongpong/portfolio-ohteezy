@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import { urlFor, type SanityImage } from "../../utils/utils";
 
 type PosterSmall = {
@@ -30,7 +29,7 @@ const { data }: Props = Astro.props;
             data.poster?.map((obj) => {
                 if (obj._type === "posterImageSmall") {
                     return (
-                        <Image
+                        <img
                             width={1440}
                             height={2560}
                             loading="eager"
@@ -48,7 +47,7 @@ const { data }: Props = Astro.props;
             data.poster?.map((obj) => {
                 if (obj._type === "posterImageBig") {
                     return (
-                        <Image
+                        <img
                             width={2560}
                             height={2560}
                             loading="eager"

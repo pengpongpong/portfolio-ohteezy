@@ -40,7 +40,7 @@ const { pathname } = Astro.url;
 
 const csp = `
     default-src 'self';
-    script-src 'self' https://www.googletagmanager.com 'sha256-YIxidjzRuvrWhjUXe8bQiR2e31kabZm1AL7UvV6BJ98=' 'sha256-5np+5xSSfGLCWExVdc9NqolB2OP7y3hTIvMFcSs3c98=' 'sha256-Vk9u4LOF9cRpsIqEgXvmmhUcOeCgyJXxMnbT1zgVgt0=' 'sha256-ZCUJe4haeHqUJsUsNNNRfMNMEB8T3lpyvRb9oQXfXCo=';
+    script-src 'self' https://www.googletagmanager.com/gtag/* 'sha256-YIxidjzRuvrWhjUXe8bQiR2e31kabZm1AL7UvV6BJ98=' 'sha256-5np+5xSSfGLCWExVdc9NqolB2OP7y3hTIvMFcSs3c98=' 'sha256-Vk9u4LOF9cRpsIqEgXvmmhUcOeCgyJXxMnbT1zgVgt0=' 'sha256-ZCUJe4haeHqUJsUsNNNRfMNMEB8T3lpyvRb9oQXfXCo=';
     base-uri 'self';
     child-src 'self';
     img-src 'self' data: https://cdn.sanity.io;
@@ -62,7 +62,6 @@ const advertisement = cookieAdvertisement?.value ? "granted" : "denied";
 <!doctype html>
 <html lang={lang}>
   <head>
-    <GoogleAnalytics analytics={analytics} advertisement={advertisement} />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
@@ -119,6 +118,7 @@ const advertisement = cookieAdvertisement?.value ? "granted" : "denied";
       content="index, follow, noimageindex, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
     />
     <title>{seo.title}</title>
+    <GoogleAnalytics analytics={analytics} advertisement={advertisement} />
   </head>
   <body class="flex flex-col min-h-screen select-none">
     <slot />

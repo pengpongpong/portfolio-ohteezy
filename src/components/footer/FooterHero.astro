@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import { urlFor, type SanityImage, type Lang } from "../../utils/utils";
 
 type Props = {
@@ -20,7 +19,7 @@ const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
     <div
       class="hidden xl:block w-fit translate-y-[25vh] relative animate-[slideIn_1s_4.3s_ease-in-out_forwards] motion-reduce:animate-none motion-reduce:translate-y-0"
     >
-      <Image
+      <img
         width={2560}
         height={2560}
         class="w-[100px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 motion-reduce:animate-none"
@@ -54,7 +53,7 @@ const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
     <div
       class="xl:hidden w-fit translate-y-[25vh] relative animate-[slideIn_1s_4.8s_ease-in-out_forwards] motion-reduce:animate-none motion-reduce:translate-y-0"
     >
-      <Image
+      <img
         width={500}
         height={500}
         class="w-[70px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 motion-reduce:animate-none"

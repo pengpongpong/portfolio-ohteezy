@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import { urlFor, type SanityImage } from "../../utils/utils";
 
 export interface AboutMeType {
@@ -14,7 +13,7 @@ type Props = {
 const { data }: Props = Astro.props;
 ---
 
-<Image
+<img
     width={2048}
     height={2048}
     loading="eager"
@@ -26,7 +25,7 @@ const { data }: Props = Astro.props;
     <slot />
 </p>
 <picture class="w-full max-w-[700px] flex justify-center">
-    <Image
+    <img
         width={176}
         height={105}
         class="w-44"
