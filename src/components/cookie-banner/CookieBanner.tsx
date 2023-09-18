@@ -50,8 +50,8 @@ const CookieBanner = ({ pathname, lang }: { pathname: string, lang: Lang }) => {
                         <CookieIcon style="fill-white" />
                     </div>
                     <span>{lang === "en"
-                        ? "We use cookies to make your online experience as sweet as a chocolate chip cookie, minus the calories!"
-                        : "Wir verwenden Cookies, um Ihr Online-Erlebnis so süß wie ein Schokoladenkeks zu machen, ohne die Kalorien!"}</span>
+                        ? "We use cookies to improve your online experience. By using our website, you accept our cookie policy."
+                        : "Wir nutzen Cookies, um Ihr Online-Erlebnis zu verbessern. Durch die Nutzung unserer Website akzeptieren Sie unsere Cookie-Richtlinien."}</span>
                 </div>
                 <div className="flex gap-4">
                     <ShowCookieModal text={lang === "en" ? "Advanced" : "Erweitert"} styles="w-44 text-sm xl:w-40 h-8 py-6 px-4 flex justify-center items-center bg-white text-black hover:bg-orange hover:text-white transition-colors duration-200 ease-in-out rounded-full" />
