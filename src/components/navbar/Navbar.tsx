@@ -92,7 +92,7 @@ const Hamburger = ({ handleMenu }: { handleMenu: (e: MouseEvent) => void }) => {
 }
 
 // language switch
-const LanguageSwitch = ({ pathname }: { pathname: string }) => {
+const LanguageSwitch = ({ pathname, lang }: { pathname: string, lang: Lang }) => {
   // get correct path
   const paths: { [key: string]: string } = {
     "/": "/en",

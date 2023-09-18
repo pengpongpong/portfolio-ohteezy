@@ -10,26 +10,17 @@ const { pathname } = Astro.url;
 
 const navData = await getNavbar();
 
-const langRegex = /\/en\b/;
-const lang = pathname.match(langRegex) ?? "";
-
 const seo = {
-    title:
-        lang[0] === "/en"
-            ? "Something went wrong... | Oh Teezy"
-            : "Etwas ging schief... | Oh Teezy",
-    description:
-        lang[0] === "/en"
-            ? "Could not find requested page"
-            : "Angeforderte Seite konnte nicht gefunden werden",
-    keywords: "",
+    title: "Etwas ging schief... | Oh Teezy",
+    description: "Angeforderte Seite konnte nicht gefunden werden",
+    keywords: "Seite nicht gefunden 404 Fehler Nicht gefunden Ups, etwas ist schiefgelaufen Verloren im Cyberspace Wir konnten nicht finden, wonach Sie suchen Sackgasse Fehler 404 Entschuldigung, diese Seite fehlt Kaputter Link Zurück zur Startseite Erkunden Sie unsere Website Suchen Sie auf unserer Website Durchsuchen Sie unsere Inhalte Finden Sie Ihren Weg Navigieren Sie auf unserer Website Setzen Sie Ihre Reise fort Entdecken Sie mehr Zurück zur Hauptseite Sitemap",
 };
 ---
 
-<Layout lang={lang[0] === "/en" ? "en" : "de"} seo={seo}>
+<Layout lang="de" seo={seo}>
     <HeaderNav>
         <Navbar
-            lang={lang[0] === "/en" ? "en" : "de"}
+            lang="de"
             contactButtonText="Kontakt"
             pathname={pathname}
             navData={navData}
@@ -40,20 +31,16 @@ const seo = {
     <main
         class="flex flex-col justify-center items-center gap-8 flex-grow font-poppins"
     >
-        <h1 class="text-4xl">
-            {
-                lang[0] === "/en"
-                    ? "Oops... Could not find page."
-                    : "Oops... Seite konnte nicht gefunden werden."
-            }
-        </h1>
+        <h1 class="text-8xl">404</h1>
+        <p>Oops... Seite konnte nicht gefunden werden</p>
+        <p>Could not find page</p>
         <p class="text-xl">
-            {lang[0] === "/en" ? "Go to " : "Gehe zu "}<a
-                href={lang[0] === "/en" ? "/en" : "/"}
+            Gehe zu <a
+                href="/"
                 class="underline hover:text-orange transition-color duration-200 ease-in-out"
                 >Home</a
             >
         </p>
     </main>
-    <Footer lang="en" />
+    <Footer lang="de" />
 </Layout>

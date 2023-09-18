@@ -120,7 +120,7 @@ const advertisement = cookieAdvertisement?.value ? "granted" : "denied";
     <title>{seo.title}</title>
     <GoogleAnalytics analytics={analytics} advertisement={advertisement} />
   </head>
-  <body class="flex flex-col min-h-screen select-none">
+  <body class="flex flex-col min-h-screen">
     <slot />
     <CookieBanner
       lang={lang}
