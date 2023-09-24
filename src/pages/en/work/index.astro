@@ -1,6 +1,5 @@
 ---
 import Layout, { type SeoEN } from "../../../layouts/Layout.astro";
-import HeaderNav from "../../../layouts/HeaderNav.astro";
 
 import NavbarMenu, { type NavData } from "../../../components/navbar/Navbar";
 import Work from "../../../components/work/Work";
@@ -25,16 +24,15 @@ const seo = {
 ---
 
 <Layout lang="en" seo={seo}>
-    <HeaderNav>
-        <NavbarMenu
-            lang="en"
-            contactButtonText="Get in touch"
-            navData={navData}
-            pathname={pathname}
-            client:load
-            transition:persist="navbar"
-        />
-    </HeaderNav>
+    <NavbarMenu
+        lang="en"
+        contactButtonText="Get in touch"
+        navData={navData}
+        pathname={pathname}
+        client:load
+        transition:persist="navbar"
+    />
+
     <Work lang="en" client:load />
     <Footer lang="en" />
 </Layout>

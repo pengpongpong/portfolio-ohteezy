@@ -1,5 +1,5 @@
 import type { SSTConfig } from "sst";
-import { AstroSite,type StackContext } from "sst/constructs";
+import { AstroSite, type StackContext } from "sst/constructs";
 
 export default {
   config(_input) {
@@ -24,6 +24,11 @@ export default {
         customDomain: {
           domainName: "mp-galerie.com",
           domainAlias: "www.mp-galerie.com"
+        },
+        cdk: {
+          responseHeadersPolicy: {
+            responseHeadersPolicyId: process.env.RESPONSE_HEADER_POLICY_ID!
+          }
         }
       });
       stack.addOutputs({

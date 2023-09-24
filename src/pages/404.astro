@@ -1,5 +1,4 @@
 ---
-import HeaderNav from "../layouts/HeaderNav.astro";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer.astro";
 
@@ -13,21 +12,21 @@ const navData = await getNavbar();
 const seo = {
     title: "Etwas ging schief... | Oh Teezy",
     description: "Angeforderte Seite konnte nicht gefunden werden",
-    keywords: "Seite nicht gefunden 404 Fehler Nicht gefunden Ups, etwas ist schiefgelaufen Verloren im Cyberspace Wir konnten nicht finden, wonach Sie suchen Sackgasse Fehler 404 Entschuldigung, diese Seite fehlt Kaputter Link Zurück zur Startseite Erkunden Sie unsere Website Suchen Sie auf unserer Website Durchsuchen Sie unsere Inhalte Finden Sie Ihren Weg Navigieren Sie auf unserer Website Setzen Sie Ihre Reise fort Entdecken Sie mehr Zurück zur Hauptseite Sitemap",
+    keywords:
+        "Seite nicht gefunden 404 Fehler Nicht gefunden Ups, etwas ist schiefgelaufen Verloren im Cyberspace Wir konnten nicht finden, wonach Sie suchen Sackgasse Fehler 404 Entschuldigung, diese Seite fehlt Kaputter Link Zurück zur Startseite Erkunden Sie unsere Website Suchen Sie auf unserer Website Durchsuchen Sie unsere Inhalte Finden Sie Ihren Weg Navigieren Sie auf unserer Website Setzen Sie Ihre Reise fort Entdecken Sie mehr Zurück zur Hauptseite Sitemap",
 };
 ---
 
 <Layout lang="de" seo={seo}>
-    <HeaderNav>
-        <Navbar
-            lang="de"
-            contactButtonText="Kontakt"
-            pathname={pathname}
-            navData={navData}
-            client:load
-            transition:persist="navbar"
-        />
-    </HeaderNav>
+    <Navbar
+        lang="de"
+        contactButtonText="Kontakt"
+        pathname={pathname}
+        navData={navData}
+        client:load
+        transition:persist="navbar"
+    />
+
     <main
         class="flex flex-col justify-center items-center gap-8 flex-grow font-poppins"
     >

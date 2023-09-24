@@ -1,6 +1,5 @@
 ---
 import Layout, { type SeoEN } from "../../layouts/Layout.astro";
-import HeaderNav from "../../layouts/HeaderNav.astro";
 
 import Navbar, { type NavData } from "../../components/navbar/Navbar";
 import Hero from "../../components/hero/Hero.astro";
@@ -28,8 +27,8 @@ const seo = {
     url: urlFor(navData.logo).size(2560, 566).url(),
     alt: "logo",
     width: "100",
-    height: "22"
-  }
+    height: "22",
+  },
 };
 
 const heroText = {
@@ -41,16 +40,15 @@ const heroText = {
 ---
 
 <Layout lang="en" seo={seo}>
-  <HeaderNav>
-    <Navbar
-      lang="en"
-      contactButtonText="Get in touch"
-      pathname={pathname}
-      navData={navData}
-      client:load
-      transition:persist="navbar"
-    />
-  </HeaderNav>
+  <Navbar
+    lang="en"
+    contactButtonText="Get in touch"
+    pathname={pathname}
+    navData={navData}
+    client:load
+    transition:persist="navbar"
+  />
+
   <main class="mx-8 xl:mx-16 flex-grow flex flex-col">
     <Hero outlinedImage={data.image} heroText={heroText} />
   </main>

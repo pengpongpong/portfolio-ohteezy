@@ -12,7 +12,7 @@ type Props = {
 const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
 ---
 
-<section
+<footer
   class="mr-8 ml-2 md:m-8 mb-2 xl:mx-16 3xl:mx-24 3xl:mt-16 flex justify-between items-center overflow-hidden select-none"
 >
   <a href={lang === "en" ? "/en/about-me" : "/ueber-mich"}>
@@ -34,7 +34,6 @@ const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
       >
         <defs>
           <path
-            id="circle"
             d="
                         M 50, 50
                         m -37, 0
@@ -68,7 +67,6 @@ const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
       >
         <defs>
           <path
-            id="circle"
             d="
                         M 50, 50
                         m -37, 0
@@ -90,4 +88,4 @@ const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
   >
     {text}
   </p>
-</section>
+</footer>

@@ -1,15 +1,16 @@
 ---
 import Layout, { type SeoEN } from "../../../../layouts/Layout.astro";
-import HeaderNav from "../../../../layouts/HeaderNav.astro";
 
 import Navbar, { type NavData } from "../../../../components/navbar/Navbar";
 import Footer from "../../../../components/footer/Footer.astro";
 
 import { getNavbar, getWorkSketch } from "../../../../utils/query";
-import WorkSketch, { type WorkSketchType } from "../../../../components/work/WorkSketch.astro";
+import WorkSketch, {
+  type WorkSketchType,
+} from "../../../../components/work/WorkSketch.astro";
 
 interface WorkSketchData extends WorkSketchType {
-  seo: SeoEN
+  seo: SeoEN;
 }
 
 const { pathname } = Astro.url;
@@ -25,16 +26,15 @@ const seo = {
 ---
 
 <Layout lang="en" seo={seo}>
-  <HeaderNav>
-    <Navbar
-      lang="en"
-      contactButtonText="Get in touch"
-      pathname={pathname}
-      navData={navData}
-      client:load
-      transition:persist="navbar"
-    />
-  </HeaderNav>
+  <Navbar
+    lang="en"
+    contactButtonText="Get in touch"
+    pathname={pathname}
+    navData={navData}
+    client:load
+    transition:persist="navbar"
+  />
+
   <main class="m-4 xl:m-16 flex flex-col gap-12">
     <h1 class="mb-8 xl:mb-12 font-poppins text-center text-4xl xl:text-6xl">
       Sketch Design

@@ -83,21 +83,6 @@ const advertisement = cookieAdvertisement?.value ? "granted" : "denied";
       http-equiv="Content-Security-Policy"
       content={`${csp.replace(/\s{2,}/g, " ").trim()}`}
     />
-    <meta
-      http-equiv="Cache-Control"
-      content="public, max-age=31536000, must-revalidate"
-    />
-    <meta http-equiv="Referrer-Policy" content="origin-when-cross-origin" />
-    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
-    <meta
-      http-equiv="Strict-Transport-Security"
-      content="max-age=63072000; includeSubDomains; preload"
-    />
-    <meta
-      http-equiv="Permissions-Policy"
-      content="camera=(), microphone=(), geolocation=(), fullscreen=()"
-    />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
 
     <meta name="description" content={seo.description} />
     <meta name="keywords" content={seo.keywords} />

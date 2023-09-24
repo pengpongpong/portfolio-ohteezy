@@ -1,6 +1,5 @@
 ---
 import Layout, { type SeoEN } from "../../../layouts/Layout.astro";
-import HeaderNav from "../../../layouts/HeaderNav.astro";
 
 import Navbar, { type NavData } from "../../../components/navbar/Navbar";
 import Footer from "../../../components/footer/Footer.astro";
@@ -29,22 +28,21 @@ const seo = {
     url: urlFor(data.profileImage).size(2048, 2048).url(),
     alt: "logo",
     width: "2048",
-    height: "2048"
-  }
+    height: "2048",
+  },
 };
 ---
 
 <Layout lang="en" seo={seo}>
-  <HeaderNav>
-    <Navbar
-      lang="en"
-      contactButtonText="Get in touch"
-      pathname={pathname}
-      navData={navData}
-      client:load
-      transition:persist="navbar"
-    />
-  </HeaderNav>
+  <Navbar
+    lang="en"
+    contactButtonText="Get in touch"
+    pathname={pathname}
+    navData={navData}
+    client:load
+    transition:persist="navbar"
+  />
+
   <main class="m-8 flex flex-col justify-start items-center gap-16 flex-grow">
     <AboutMe data={data}>
       {data?.bioEN}

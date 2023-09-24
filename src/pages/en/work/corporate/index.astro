@@ -1,15 +1,16 @@
 ---
 import Layout, { type SeoEN } from "../../../../layouts/Layout.astro";
-import HeaderNav from "../../../../layouts/HeaderNav.astro";
 
 import NavbarMenu, { type NavData } from "../../../../components/navbar/Navbar";
 import Footer from "../../../../components/footer/Footer.astro";
 
 import { getNavbar, getWorkCorporate } from "../../../../utils/query";
-import WorkCorporate, { type WorkCorporateType } from "../../../../components/work/WorkCorporate.astro";
+import WorkCorporate, {
+    type WorkCorporateType,
+} from "../../../../components/work/WorkCorporate.astro";
 
 interface WorkCorporateData extends WorkCorporateType {
-    seo: SeoEN
+    seo: SeoEN;
 }
 
 const navData: NavData = await getNavbar();
@@ -25,16 +26,15 @@ const seo = {
 ---
 
 <Layout lang="en" seo={seo}>
-    <HeaderNav>
-        <NavbarMenu
-            lang="en"
-            contactButtonText="Get in touch"
-            pathname={pathname}
-            navData={navData}
-            client:load
-            transition:persist="navbar"
-        />
-    </HeaderNav>
+    <NavbarMenu
+        lang="en"
+        contactButtonText="Get in touch"
+        pathname={pathname}
+        navData={navData}
+        client:load
+        transition:persist="navbar"
+    />
+
     <main class="m-8 xl:m-24 flex-grow">
         <h1 class="mb-8 xl:mb-12 font-poppins text-center text-4xl xl:text-6xl">
             Corporate Design

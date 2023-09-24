@@ -92,7 +92,7 @@ const Hamburger = ({ handleMenu }: { handleMenu: (e: MouseEvent) => void }) => {
 }
 
 // language switch
-const LanguageSwitch = ({ pathname, lang }: { pathname: string, lang: Lang }) => {
+const LanguageSwitch = ({ pathname }: { pathname: string }) => {
   // get correct path
   const paths: { [key: string]: string } = {
     "/": "/en",
@@ -184,7 +184,7 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
 
 
   return (
-    <>
+    <header className="m-8 xl:mx-16 xl:mt-12 3xl:mx-24 3xl:mt-16 xl:mb-8">
       {/* nav bar */}
       <nav className="flex flex-col xl:flex-row gap-8 xl:gap-0 justify-between items-start">
         {navData.logo ? <a href={lang === "en" ? "/en" : "/"}>
@@ -249,8 +249,7 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
           </> : ""}
         </div>
       </ div>
-
-    </>
+    </header>
   );
 };
 

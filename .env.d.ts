@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly API_AWS: string;
   readonly URL_AWS: string;
   readonly GOOGLE_ID: string;
+  readonly RESPONSE_HEADER_POLICY_ID: string;
 }
 
 interface ImportMeta {
