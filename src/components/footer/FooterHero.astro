@@ -10,6 +10,7 @@ type Props = {
 };
 
 const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
+console.log(aboutMeText);
 ---
 
 <footer
@@ -34,6 +35,7 @@ const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
       >
         <defs>
           <path
+            id="circle"
             d="
                         M 50, 50
                         m -37, 0
@@ -67,6 +69,7 @@ const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
       >
         <defs>
           <path
+            id="circle"
             d="
                         M 50, 50
                         m -37, 0

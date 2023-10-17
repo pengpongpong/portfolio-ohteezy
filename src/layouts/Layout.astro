@@ -38,19 +38,6 @@ export type SeoEN = {
 const { seo, lang }: Props = Astro.props;
 const { pathname } = Astro.url;
 
-const csp = `
-    default-src 'self';
-    script-src 'self' https://www.googletagmanager.com 'sha256-YIxidjzRuvrWhjUXe8bQiR2e31kabZm1AL7UvV6BJ98=' 'sha256-pNrKo6RniQWzaIC5dPvma6lBM6kATjwQuHoNVRDqtPU=' 'sha256-qs8+yBBhnaTHA7rZbnN1oBDR+0/pRGQdlbEN7Uo2H7M=' 'sha256-ZCUJe4haeHqUJsUsNNNRfMNMEB8T3lpyvRb9oQXfXCo=' 'sha256-Vk9u4LOF9cRpsIqEgXvmmhUcOeCgyJXxMnbT1zgVgt0=' 'sha256-5np+5xSSfGLCWExVdc9NqolB2OP7y3hTIvMFcSs3c98=' 'sha256-Br45NrMzMNuCi+VX7eajgvznlbSFZhi3HGjzRxuT15w=' 'sha256-d9DjQnDFIidQCghtN5296fEGMoaAzqVuZ8Xe4a/lXxg=';
-    base-uri 'self';
-    child-src 'self';
-    img-src 'self' data: https://cdn.sanity.io;
-    style-src 'self' fonts.googleapis.com;
-    style-src-elem 'self' fonts.googleapis.com 'unsafe-inline';
-    style-src-attr 'self';
-    font-src 'self' fonts.gstatic.com;
-    frame-src 'self' https://cdn.sanity.io;
-    connect-src 'self' https://o3q6f9psgc.execute-api.eu-central-1.amazonaws.com https://*.google-analytics.com https://www.googletagmanager.com;
-`;
 
 const cookieAnalytics = Astro.cookies.get("cookie-analytics");
 const cookieAdvertisement = Astro.cookies.get("cookie-advertisement");
@@ -78,11 +65,6 @@ const advertisement = cookieAdvertisement?.value ? "granted" : "denied";
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"/>
     <meta name="msapplication-TileColor" content="#da532c"/>
     <meta name="theme-color" content="#ffffff"/>
-
-    <meta
-      http-equiv="Content-Security-Policy"
-      content={`${csp.replace(/\s{2,}/g, " ").trim()}`}
-    />
 
     <meta name="description" content={seo.description} />
     <meta name="keywords" content={seo.keywords} />
