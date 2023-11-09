@@ -1,14 +1,18 @@
 ---
-interface Props {
+import type { Lang } from "../../utils/utils";
+type Props = {
   anchorHref: string;
-}
-const { anchorHref }: Props = Astro.props;
+  aria: { de: string; en: string };
+  lang: Lang;
+};
+const { anchorHref, aria, lang }: Props = Astro.props;
 ---
 
 <a
   href={anchorHref}
   class="w-fit flex gap-2 items-center group hover:text-orange transition-colors duration-200 ease-in-out"
   rel="noreferrer noopener"
+  aria-label={lang === "en" ? aria.en : aria.de}
   target="_blank"
 >
   <slot />

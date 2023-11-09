@@ -1,14 +1,21 @@
 ---
+import type { Lang } from "../../utils/utils";
 import type { Contact } from "../footer/Footer.astro";
 import ContactLink from "./ContactLink.astro";
 
-interface Props extends Contact {}
+interface Props extends Contact {
+    lang: Lang
+}
 
-const { email, instagram, linkedIn }: Props = Astro.props;
+const { email, instagram, linkedIn, lang }: Props = Astro.props;
 ---
 
 <section class="w-full max-w-[600px] flex flex-col gap-8 font-poppins text-2xl">
-    <ContactLink anchorHref={`mailto:${email}`}>
+    <ContactLink 
+    anchorHref={`mailto:${email}`}
+    aria={{de: "verfasse email", en: "write email"}}
+    lang={lang}
+    >
         <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="#ffffff"
@@ -22,7 +29,11 @@ const { email, instagram, linkedIn }: Props = Astro.props;
         >
          Email
     </ContactLink>
-    <ContactLink anchorHref={instagram}>
+    <ContactLink 
+    anchorHref={instagram}
+    aria={{de: "besuche Instagram Profil", en: "visit Instagram profile"}}
+    lang={lang}
+    >
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -38,7 +49,11 @@ const { email, instagram, linkedIn }: Props = Astro.props;
         >
          Instagram
     </ContactLink>
-    <ContactLink anchorHref={linkedIn}>
+    <ContactLink 
+    anchorHref={linkedIn}
+    aria={{de: "besuche LinkedIn Profil", en: "visit LinkedIn profile"}}
+    lang={lang}
+    >
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

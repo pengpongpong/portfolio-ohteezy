@@ -56,7 +56,11 @@ const { lang }: Props = Astro.props;
     </ul>
     <ul class="flex gap-8 justify-center">
       <li>
-        <a href={`mailto:${data.email}`} rel="noreferrer noopener" class="group">
+        <a 
+        href={`mailto:${data.email}`}
+        aria-label={lang === "en" ? "write email" : "verfasse Email"}
+        rel="noreferrer noopener" 
+        class="group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="#ffffff"
@@ -71,7 +75,12 @@ const { lang }: Props = Astro.props;
         </a>
       </li>
       <li>
-        <a href={data.instagram} target="_blank" rel="noreferrer noopener" class="group">
+        <a 
+        href={data.instagram} 
+        target="_blank" 
+        aria-label={lang === "en" ? "visit Instagram Profile" : "besuche Instagram Profil"}
+        rel="noreferrer noopener" 
+        class="group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -88,7 +97,12 @@ const { lang }: Props = Astro.props;
         </a>
       </li>
       <li>
-        <a href={data.linkedIn}  target="_blank" rel="noreferrer noopener" class="group">
+        <a 
+        href={data.linkedIn}  
+        aria-label={lang === "en" ? "visit LinkedIn Profile" : "besuche LinkedIn Profil"}
+        target="_blank" 
+        rel="noreferrer noopener" 
+        class="group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

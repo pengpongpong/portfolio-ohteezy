@@ -13,7 +13,9 @@ type WorkLinkProps = {
 
 const WorkLink = ({ url, title, styles, animation, lang, enterHover, exitHover }: WorkLinkProps) => {
     return (
-        <li className={`h-[3.5rem] overflow-hidden ${styles} text-4xl xl:text-5xl cursor-pointer hover:text-orange transition-all duration-200 ease-in-out`} onMouseEnter={enterHover} onMouseLeave={exitHover}>
+        <li className={`h-[3.5rem] overflow-hidden ${styles} text-4xl xl:text-5xl cursor-pointer hover:text-orange transition-all duration-200 ease-in-out focus-within:outline-1 focus-within:outline`}
+            onMouseEnter={enterHover}
+            onMouseLeave={exitHover}>
             <a className={`inline-block translate-y-[25rem] ${animation} motion-reduce:translate-y-0 motion-reduce:animate-none`} href={`${lang === "en" ? "/en" : ""}${url}`}>{title}</a>
         </li>
     )

@@ -10,13 +10,12 @@ type Props = {
 };
 
 const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
-console.log(aboutMeText);
 ---
 
 <footer
   class="mr-8 ml-2 md:m-8 mb-2 xl:mx-16 3xl:mx-24 3xl:mt-16 flex justify-between items-center overflow-hidden select-none"
 >
-  <a href={lang === "en" ? "/en/about-me" : "/ueber-mich"}>
+  <a href={lang === "en" ? "/en/about-me" : "/ueber-mich"} aria-label={lang === "en" ? "go to about me page" : "gehe zur über mich Seite"}>
     <div
       class="hidden xl:block w-fit translate-y-[25vh] relative animate-[slideIn_1s_4.3s_ease-in-out_forwards] motion-reduce:animate-none motion-reduce:translate-y-0"
     >
@@ -69,7 +68,7 @@ console.log(aboutMeText);
       >
         <defs>
           <path
-            id="circle"
+            id="circle2"
             d="
                         M 50, 50
                         m -37, 0
@@ -81,7 +80,7 @@ console.log(aboutMeText);
           font-size={circleFontSize}
           class="fill-white uppercase font-poppins"
         >
-          <textPath xlink:href="#circle">{aboutMeText}</textPath>
+          <textPath xlink:href="#circle2">{aboutMeText}</textPath>
         </text>
       </svg>
     </div>

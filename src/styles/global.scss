@@ -60,3 +60,8 @@ html {
   background-repeat: no-repeat;
 }
 
+
+// hide label, only for screen readers
+form label {
+  display: none;
+}

@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import type { Lang } from "../../utils/utils"
 
+import PuffLoader from "react-spinners/PuffLoader"
+
 
 const ErrorText = ({ text }: { text?: string }) => {
     return <p className="mb-2 font-text text-error text-center">{text}</p>
@@ -14,7 +16,8 @@ const ErrorText = ({ text }: { text?: string }) => {
 const phoneRegex = /(?:\+?\d{1,3}\s?)?(?:(?:\(\d{1,}\)|\d{1,})[-.\s]?\d{1,}[-.\s]?\d{1,}|(?:\d{1,}[-.\s]?){3,}\d{1,})\s?(?:#|x|ext)\s?\d{1,}|(?:\d{1,}[-.\s]?){3,}\d{1,}/g;
 
 const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang }) => {
-    const [message, setMessage] = useState<string>("")
+    const [message, setMessage] = useState("")
+    const [loading, setLoading] = useState(false)
 
     // error messages
     const errorMessage = {
@@ -79,6 +82,7 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
     // submit data
     const onSubmit = handleSubmit((data) => {
         (async () => {
+            setLoading(true)
             await fetch(url, {
                 method: "POST", body: JSON.stringify({
                     data
@@ -90,10 +94,12 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
                 .then(result => {
                     const { message } = JSON.parse(result.body)
                     if (message === "success") {
+                        setLoading(false)
                         const success = lang === "en" ? "Message sent!" : "Kontaktanfrage gesendet!"
                         return setMessage(success)
                     }
                     if (message === "error") {
+                        setLoading(false)
                         const error = lang === "en" ? "Error - Please try again!" : "Fehler - Bitte nochmal versuchen!"
                         return setMessage(error)
                     }
@@ -108,6 +114,7 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
     return (
         <form onSubmit={onSubmit} className="max-w-[600px]">
             <fieldset className="font-text flex flex-col gap-4">
+                <label htmlFor="name">Name</label>
                 <input type="text" placeholder={lang === "en" ? "Your name" : "Dein Name"} autoComplete="name" className={`${styles.input}`} {...register("name")} />
                 {errors?.name && <ErrorText text={errors?.name?.message} />}
 
@@ -116,6 +123,7 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
                     name="select"
                     render={({ field: { onChange } }) => (
                         <>
+                            <label htmlFor="select">{lang === "en" ? "How would you like to be contacted?" : "Wie möchtest du kontaktiert werden?"}</label>
                             <select name="type" className={`${styles.input} appearance-none selectArrow`} onChange={onChange} defaultValue={lang === "en" ? "How would you like to be contacted?" : "Wie möchtest du kontaktiert werden?"}>
                                 <option disabled>{lang === "en" ? "How would you like to be contacted?" : "Wie möchtest du kontaktiert werden?"}</option>
                                 <option value="email">Email</option>
@@ -131,11 +139,14 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
 
                 {watchSelect === "call" ? <input type="text" placeholder={lang === "en" ? "Your phone number" : "Deine Telefonnummer"} autoComplete="tel" className={`${styles.input}`} {...register("call")} /> : ""}
                 {errors?.call && watchSelect && <ErrorText text={errors?.call?.message} />}
-
+                <label htmlFor="message">{lang === "en" ? "Leave me a message" : "Hinterlasse mir eine Nachricht"}</label>
                 <textarea className={`${styles.input}`} rows={6} placeholder={lang === "en" ? "Leave me a message" : "Hinterlasse mir eine Nachricht"} {...register("message")} />
             </fieldset>
 
             <button className="w-full p-3 mt-12 border rounded-full bg-white text-black box-shadow tracking-wider hover:bg-orange hover:text-white hover:border-orange transition-color duration-300 ease-in-out" type="submit">{lang === "en" ? "Send" : "Abschicken"}</button>
+            {loading ? <div className="mt-4 flex justify-center items-center">
+                <PuffLoader color="rgb(253, 81, 49)" />
+            </div> : null}
             {message !== "" ? <p className="text-center my-4 tracking-wide font-text">{message}</p> : ""}
         </form>
     )
