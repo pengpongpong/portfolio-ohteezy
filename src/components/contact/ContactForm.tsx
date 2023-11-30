@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { Controller, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import type { Lang } from "@utils/utils"
 
-import PuffLoader from "react-spinners/PuffLoader"
+import PropagateLoader from "react-spinners/PropagateLoader"
 
 
 const ErrorText = ({ text }: { text?: string }) => {
@@ -59,7 +59,7 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
         reset,
         control,
         watch,
-        formState: { errors, isSubmitSuccessful }
+        formState: { errors }
     } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
@@ -70,11 +70,6 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
             message: "",
         }
     })
-
-    // reset form on success submit
-    useEffect(() => {
-        if (isSubmitSuccessful) reset()
-    }, [isSubmitSuccessful, reset])
 
     // watch select element to render email or phone input conditionally
     const watchSelect = watch("select", "")
@@ -93,15 +88,23 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
                 .then(res => res.json())
                 .then(result => {
                     const { message } = JSON.parse(result.body)
-                    if (message === "success") {
+
+                    // handle error
+                    if (message === "Required fields missing") {
+                        const error = lang === "en" ? "Error - Required fields missing!" : "Fehler - Erforderliche Felder fehlen!"
+                        setMessage(error)
                         setLoading(false)
+                    } else if (message === "Invalid email") {
+                        const error = lang === "en" ? "Error - Invalid email!" : "Fehler - Ungültige Email!"
+                        setMessage(error)
+                        setLoading(false)
+
+                        // handle success
+                    } else if (message === "success") {
                         const success = lang === "en" ? "Message sent!" : "Kontaktanfrage gesendet!"
-                        return setMessage(success)
-                    }
-                    if (message === "error") {
+                        setMessage(success)
+                        reset()
                         setLoading(false)
-                        const error = lang === "en" ? "Error - Please try again!" : "Fehler - Bitte nochmal versuchen!"
-                        return setMessage(error)
                     }
                 })
         })()
@@ -145,7 +148,7 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
 
             <button className="w-full p-3 mt-12 border rounded-full bg-white text-black box-shadow tracking-wider hover:bg-orange hover:text-white hover:border-orange transition-color duration-300 ease-in-out" type="submit">{lang === "en" ? "Send" : "Abschicken"}</button>
             {loading ? <div className="mt-4 flex justify-center items-center">
-                <PuffLoader color="rgb(253, 81, 49)" />
+                <PropagateLoader color="rgb(253, 81, 49)" />
             </div> : null}
             {message !== "" ? <p className="text-center my-4 tracking-wide font-text">{message}</p> : ""}
         </form>
