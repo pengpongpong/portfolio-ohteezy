@@ -85,12 +85,9 @@ const SpanOutline = ({ children, styles, imageRef }: { children: ReactNode, styl
     };
 
     const exitSpan = () => {
-        const html = document.querySelector("html")
-
-        if (imageRef.current && html) {
+        if (imageRef.current) {
             const image = imageRef.current as HTMLImageElement
 
-            html.style.overflow = "auto"
             const hideImage = () => {
                 image.style.visibility = "hidden"
                 image.style.opacity = "0"

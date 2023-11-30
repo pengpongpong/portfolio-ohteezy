@@ -1,4 +1,4 @@
-import { useRef, useState, type KeyboardEventHandler} from "react";
+import { useRef, useState, type KeyboardEventHandler } from "react";
 import { urlFor, type SanityImage, type Lang } from "@utils/utils";
 import "@styles/navbar.scss";
 import { LanguageSwitch } from "./LanguageSwitch";
@@ -8,7 +8,6 @@ export type NavData = {
   leftImage: SanityImage,
   rightImage: SanityImage,
 }
-
 
 type NavListProps = {
   pathname: string,
@@ -94,7 +93,7 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
   const Hamburger = ({ handleMenu }: { handleMenu: () => void }) => {
 
     const handleKeyPress: KeyboardEventHandler<HTMLLabelElement> = (event) => {
-      
+
       // handle Enter and Space key
       if ((event.keyCode === 13 || event.keyCode === 32) && checked === true) {
         setChecked(false)
@@ -240,21 +239,23 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
                 gap-8 
                 xl:gap-0"
       >
-        {navData.logo ? <a href={lang === "en" ? "/en" : "/"} aria-label={lang === "en" ? "go to home page" : "gehe zur Home Seite"}>
-          <img
-            width={100}
-            height={22}
-            className={`
+        {navData.logo
+          ? <a href={lang === "en" ? "/en" : "/"} aria-label={lang === "en" ? "go to home page" : "gehe zur Home Seite"}>
+            <img
+              width={100}
+              height={22}
+              className={`
                     ${styles.logo} 
                     z-50 
                     xl:z-0
                     relative
                     motion-reduce:translate-y-0 motion-reduce:animate-none`
-            }
-            src={urlFor(navData.logo).size(2560, 566).url()}
-            alt="oh-teezy logo"
-          />
-        </a> : ""}
+              }
+              src={urlFor(navData.logo).size(2560, 566).url()}
+              alt="oh-teezy logo"
+            />
+          </a>
+          : ""}
 
         <nav
           className={`
