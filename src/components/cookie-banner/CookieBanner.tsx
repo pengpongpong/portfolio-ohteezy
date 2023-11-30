@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { setOpen, setShowBanner, useConsentStore } from "../../utils/store"
+import { setOpen, setShowBanner, useConsentStore } from "@utils/store"
 import { CookieIcon, setCookies } from "./CookieModal"
 
-import { getLocalStorage, setLocalStorage, type Lang } from "../../utils/utils"
+import { getLocalStorage, setLocalStorage, type Lang } from "@utils/utils"
 
 type Consent = "granted" | "partial" | "denied" | null
 

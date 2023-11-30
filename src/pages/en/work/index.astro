@@ -1,11 +1,11 @@
 ---
-import Layout, { type SeoEN } from "../../../layouts/Layout.astro";
+import Layout, { type SeoEN } from "@layouts/Layout.astro";
 
-import NavbarMenu, { type NavData } from "../../../components/navbar/Navbar";
-import Work from "../../../components/work/Work";
-import Footer from "../../../components/footer/Footer.astro";
+import NavbarMenu, { type NavData } from "@components/navbar/Navbar";
+import Work from "@components/work/Work";
+import Footer from "@components/footer/Footer.astro";
 
-import { getNavbar, getWork } from "../../../utils/query";
+import { getNavbar, getWork } from "@utils/query";
 
 type Work = {
     seo: SeoEN;

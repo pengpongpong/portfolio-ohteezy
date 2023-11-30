@@ -1,15 +1,15 @@
 ---
-import Layout, { type SeoEN } from "../../../layouts/Layout.astro";
+import Layout, { type SeoEN } from "@layouts/Layout.astro";
 
-import Navbar, { type NavData } from "../../../components/navbar/Navbar";
-import Footer from "../../../components/footer/Footer.astro";
+import Navbar, { type NavData } from "@components/navbar/Navbar";
+import Footer from "@components/footer/Footer.astro";
 
-import { getAboutMe, getNavbar } from "../../../utils/query";
+import { getAboutMe, getNavbar } from "@utils/query";
 
 import AboutMe, {
   type AboutMeType,
-} from "../../../components/about-me/AboutMe.astro";
-import { urlFor } from "../../../utils/utils";
+} from "@components/about-me/AboutMe.astro";
+import { urlFor } from "@utils/utils";
 
 interface AboutMeData extends AboutMeType {
   bioEN: string;

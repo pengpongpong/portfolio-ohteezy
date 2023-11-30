@@ -3,8 +3,8 @@ import { type ReactElement, type Ref, forwardRef, useEffect, useRef } from 'reac
 import type { TransitionProps } from '@mui/material/transitions';
 import { ThemeProvider, createTheme, Slide, DialogContent, Dialog } from "@mui/material";
 
-import { setOpen, setShowBanner, useConsentStore } from "../../utils/store";
-import { deleteCookie, getCookie, setCookie, setLocalStorage, type Lang } from "../../utils/utils";
+import { setOpen, setShowBanner, useConsentStore } from "@utils/store";
+import { deleteCookie, getCookie, setCookie, setLocalStorage, type Lang } from "@utils/utils";
 
 // styles for dialog modal
 const theme = createTheme({

@@ -1,13 +1,13 @@
 ---
-import Layout, { type SeoEN } from "../../../../layouts/Layout.astro";
+import Layout, { type SeoEN } from "@layouts/Layout.astro";
 
-import NavbarMenu, { type NavData } from "../../../../components/navbar/Navbar";
-import Footer from "../../../../components/footer/Footer.astro";
+import NavbarMenu, { type NavData } from "@components/navbar/Navbar";
+import Footer from "@components/footer/Footer.astro";
 
-import { getNavbar, getWorkPoster } from "../../../../utils/query";
+import { getNavbar, getWorkPoster } from "@utils/query";
 import WorkPoster, {
     type WorkPosterType,
-} from "../../../../components/work/WorkPoster.astro";
+} from "@components/work/WorkPoster.astro";
 
 interface WorkPosterData extends WorkPosterType {
     seo: SeoEN;

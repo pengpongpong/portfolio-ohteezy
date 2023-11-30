@@ -1,5 +1,5 @@
 ---
-import { urlFor, type SanityImage } from "../../utils/utils";
+import { urlFor, type SanityImage } from "@utils/utils";
 
 type PosterSmall = {
     imageAlt: string;
@@ -23,7 +23,7 @@ type Props = {
 const { data }: Props = Astro.props;
 ---
 
-<section class="flex flex-col justify-center items-center">
+<div class="flex flex-col justify-center items-center">
     <div class="mb-4 flex flex-col xl:flex-row gap-4 flex-wrap">
         {
             data.poster?.map((obj) => {
@@ -60,4 +60,4 @@ const { data }: Props = Astro.props;
             })
         }
     </div>
-</section>
+</div>

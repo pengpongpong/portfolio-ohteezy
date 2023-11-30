@@ -1,14 +1,15 @@
 ---
-import "../styles/global.scss";
-import "../styles/navbar.scss";
-import CookieBanner from "../components/cookie-banner/CookieBanner.tsx";
-import CookieModal from "../components/cookie-banner/CookieModal.tsx";
-import GoogleAnalytics from "../components/google-analytics/GoogleAnalytics.astro";
-import type { Lang } from "../utils/utils";
+import "@styles/global.scss";
+import "@styles/navbar.scss";
+import CookieBanner from "@components/cookie-banner/CookieBanner.tsx";
+import CookieModal from "@components/cookie-banner/CookieModal.tsx";
+import GoogleAnalytics from "@components/google-analytics/GoogleAnalytics.astro";
+import type { Lang } from "@utils/utils";
 
 interface Props {
   seo: Seo;
   lang: Lang;
+  path?: string;
 }
 
 export type Seo = {
@@ -35,7 +36,7 @@ export type SeoEN = {
   };
 };
 
-const { seo, lang }: Props = Astro.props;
+const { seo, lang, path }: Props = Astro.props;
 const { pathname } = Astro.url;
 
 
@@ -50,7 +51,7 @@ const advertisement = cookieAdvertisement?.value ? "granted" : "denied";
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content={Astro.generator} />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -94,7 +95,7 @@ const advertisement = cookieAdvertisement?.value ? "granted" : "denied";
     <title>{seo.title}</title>
     <GoogleAnalytics analytics={analytics} advertisement={advertisement} />
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body data-path={path} class="flex flex-col h-[100svh]">
     <slot />
     <CookieBanner
       lang={lang}

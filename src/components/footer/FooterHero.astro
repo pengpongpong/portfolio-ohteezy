@@ -1,36 +1,64 @@
 ---
-import { urlFor, type SanityImage, type Lang } from "../../utils/utils";
+import { urlFor, type SanityImage, type Lang } from "@utils/utils";
 
 type Props = {
   image: SanityImage;
+  imageDesktop: SanityImage;
   aboutMeText: string;
   text: string;
   circleFontSize: string;
   lang: Lang;
 };
 
-const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
+const { image, imageDesktop, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
 ---
 
 <footer
-  class="mr-8 ml-2 md:m-8 mb-2 xl:mx-16 3xl:mx-24 3xl:mt-16 flex justify-between items-center overflow-hidden select-none"
+  class="mr-8
+        ml-2
+        mb-2
+        md:m-8
+        xl:mx-16
+        3xl:mx-24
+        3xl:mt-16
+        flex justify-between items-center
+        overflow-hidden
+        select-none"
 >
-  <a href={lang === "en" ? "/en/about-me" : "/ueber-mich"} aria-label={lang === "en" ? "go to about me page" : "gehe zur über mich Seite"}>
+  <a
+    href={lang === "en" ? "/en/about-me" : "/ueber-mich"}
+    aria-label={lang === "en"
+      ? "go to about me page"
+      : "gehe zur über mich Seite"}
+  >
     <div
-      class="hidden xl:block w-fit translate-y-[25vh] relative animate-[slideIn_1s_4.3s_ease-in-out_forwards] motion-reduce:animate-none motion-reduce:translate-y-0"
+      class="w-fit
+            hidden
+            xl:block
+            relative
+            translate-y-[25vh]
+            animate-[slideIn_1s_4.3s_ease-in-out_forwards]
+            motion-reduce:animate-none
+            motion-reduce:translate-y-0"
     >
       <img
         width={2560}
         height={2560}
-        class="w-[100px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 motion-reduce:animate-none"
-        src={urlFor(image).size(2560, 2560).url()}
+        class="w-[100px]
+              absolute
+              top-1/2 left-1/2
+              -translate-x-1/2
+              -translate-y-1/2
+              motion-reduce:animate-none"
+        src={urlFor(imageDesktop).size(1040, 773).url()}
         alt="flower icon"
       />
       <svg
         viewBox="0 0 100 100"
         width="180"
         height="180"
-        class="animate-[circleRotate_30s_linear_infinite] motion-reduce:animate-none"
+        class="animate-[circleRotate_30s_linear_infinite]
+              motion-reduce:animate-none"
       >
         <defs>
           <path
@@ -44,19 +72,33 @@ const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
         </defs>
         <text
           font-size={circleFontSize}
-          class="fill-white uppercase font-poppins"
+          class="fill-white
+                uppercase
+                font-poppins"
         >
           <textPath xlink:href="#circle">{aboutMeText}</textPath>
         </text>
       </svg>
     </div>
     <div
-      class="xl:hidden w-fit translate-y-[25vh] relative animate-[slideIn_1s_4.8s_ease-in-out_forwards] motion-reduce:animate-none motion-reduce:translate-y-0"
+      class="w-fit
+            xl:hidden
+            relative
+            translate-y-[25vh]
+            animate-[slideIn_1s_4.8s_ease-in-out_forwards]
+            motion-reduce:animate-none
+            motion-reduce:translate-y-0"
     >
       <img
         width={500}
         height={500}
-        class="w-[70px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 motion-reduce:animate-none"
+        class="w-[70px]
+              absolute
+              top-1/2
+              left-1/2
+              -translate-y-1/2
+              -translate-x-1/2
+              motion-reduce:animate-none"
         src={urlFor(image).size(500, 500).url()}
         alt="flower icon"
       />
@@ -64,7 +106,8 @@ const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
         viewBox="0 0 100 100"
         width="130"
         height="130"
-        class="animate-[circleRotate_30s_linear_infinite] motion-reduce:animate-none"
+        class="animate-[circleRotate_30s_linear_infinite]
+              motion-reduce:animate-none"
       >
         <defs>
           <path
@@ -78,7 +121,9 @@ const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
         </defs>
         <text
           font-size={circleFontSize}
-          class="fill-white uppercase font-poppins"
+          class="fill-white
+                  uppercase
+                  font-poppins"
         >
           <textPath xlink:href="#circle2">{aboutMeText}</textPath>
         </text>
@@ -86,7 +131,22 @@ const { image, aboutMeText, text, circleFontSize, lang }: Props = Astro.props;
     </div>
   </a>
   <p
-    class="w-full whitespace-pre xl:w-[430px] xl:mr-16 translate-y-[50vh] opacity-40 text-right xl:text-left text-[.4rem] xl:text-base font-poppins leading-[.4rem] xl:leading-6 animate-[slideInMob100_2s_3.5s_ease-in-out_forwards] motion-reduce:animate-none motion-reduce:translate-y-0"
+    class="w-full
+          xl:w-[430px]
+          xl:mr-16
+          translate-y-[50vh]
+          opacity-40
+          font-poppins
+          text-right
+          xl:text-left
+          text-[.4rem]
+          xl:text-base
+          leading-[.4rem]
+          xl:leading-6
+          whitespace-pre
+          animate-[slideInMob100_2s_3.5s_ease-in-out_forwards]
+          motion-reduce:animate-none
+          motion-reduce:translate-y-0"
   >
     {text}
   </p>

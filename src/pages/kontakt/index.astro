@@ -1,12 +1,12 @@
 ---
-import Layout, { type Seo } from "../../layouts/Layout.astro";
+import Layout, { type Seo } from "@layouts/Layout.astro";
 
-import Navbar, { type NavData } from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/Footer.astro";
+import Navbar, { type NavData } from "@components/navbar/Navbar";
+import Footer from "@components/footer/Footer.astro";
 
-import ContactForm from "../../components/contact/ContactForm";
-import { getContact, getNavbar } from "../../utils/query";
-import ContactLinks from "../../components/contact/ContactLinks.astro";
+import ContactForm from "@components/contact/ContactForm";
+import { getContact, getNavbar } from "@utils/query";
+import ContactLinks from "@components/contact/ContactLinks.astro";
 
 type Contact = {
   email: string;
@@ -47,9 +47,9 @@ const seo = {
       linkedIn={data.linkedIn}
       lang="de"
     />
-    <section class="my-12 w-full max-w-[600px]">
+    <div class="my-12 w-full max-w-[600px]">
       <ContactForm lang="de" api={api} url={url} client:visible />
-    </section>
+    </div>
   </main>
   <Footer lang="de" />
 </Layout>

@@ -1,9 +1,9 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 
-import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/Footer.astro";
-import { getNavbar } from "../../utils/query";
+import Navbar from "@components/navbar/Navbar";
+import Footer from "@components/footer/Footer.astro";
+import { getNavbar } from "@utils/query";
 
 const { pathname } = Astro.url;
 
@@ -29,30 +29,10 @@ const seo = {
   />
 
   <main class="m-8 xl:m-16 flex-grow font-poppins">
-    <header>
-      <h1 class="mb-8 text-4xl">Impressum</h1>
-    </header>
-    <p>Oh Teezy e.U.</p>
+    <h1 class="mb-8 text-4xl">Impressum</h1>
+    <p>Oh Teezy</p>
     <p>Inhaber Pham Martin</p>
     <p class="my-8">Dipl. Grafik Designer</p>
-
-    <!-- <ul>
-      <li class="mb-2">UID-Nr: ATU12345678</li>
-      <li>FN: 123456a</li>
-      <li>FB-Gericht: Graz</li>
-      <li>Sitz: 4711 Musterdorf</li>
-      <li>Musterstraße 12 | Austria</li>
-      <li>
-        Tel: <a href="tel:+43664123123" rel="noopener noreferrer"
-          >+43 XXX XXXX</a
-        >
-      </li>
-      <li>
-        E-Mail: <a href="mailto:email@email.com" rel="noopener noreferrer"
-          >email@server.domain</a
-        >
-      </li>
-    </ul> -->
   </main>
   <Footer lang="de" />
 </Layout>

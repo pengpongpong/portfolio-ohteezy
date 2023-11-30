@@ -1,7 +1,7 @@
 ---
-import { urlFor, type SanityImage } from "../../utils/utils";
-import ProjectCard from "../project-card/ProjectCard.astro";
-import ProjectCardBig from "../project-card/ProjectCardBig.astro";
+import { urlFor, type SanityImage } from "@utils/utils";
+import ProjectCard from "@components/project-card/ProjectCard.astro";
+import ProjectCardBig from "@components/project-card/ProjectCardBig.astro";
 
 type ProjectSmall = {
     leftImageText: string;
@@ -34,7 +34,7 @@ type Props = {
 const { data }: Props = Astro.props;
 ---
 
-<section>
+<div>
     {
         data.projects?.map((obj) => {
             if (obj._type === "projectSmall") {
@@ -76,4 +76,4 @@ const { data }: Props = Astro.props;
             }
         })
     }
-</section>
+</div>

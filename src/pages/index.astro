@@ -1,16 +1,18 @@
 ---
-import Layout, { type Seo } from "../layouts/Layout.astro";
+import Layout, { type Seo } from "@layouts/Layout.astro";
 
-import Navbar, { type NavData } from "../components/navbar/Navbar";
-import Hero from "../components/hero/Hero.astro";
-import FooterHero from "../components/footer/FooterHero.astro";
+import Navbar, { type NavData } from "@components/navbar/Navbar";
+import Hero from "@components/hero/Hero.astro";
+import FooterHero from "@components/footer/FooterHero.astro";
 
-import { urlFor, type SanityImage } from "../utils/utils";
-import { getHome, getNavbar } from "../utils/query";
+import { urlFor, type SanityImage } from "@utils/utils";
+import { getHome, getNavbar } from "@utils/query";
+import { HeroImage } from "@components/hero/HeroImage";
 
 type Home = {
   image: SanityImage;
   imageAboutMe: SanityImage;
+  imageAboutMeDesktop: SanityImage;
   seo: Seo;
 };
 
@@ -39,7 +41,7 @@ const heroText = {
 };
 ---
 
-<Layout lang="de" seo={seo}>
+<Layout path="landing" lang="de" seo={seo}>
   <Navbar
     lang="de"
     contactButtonText="Kontakt"
@@ -49,12 +51,20 @@ const heroText = {
     transition:persist="navbar"
   />
 
-  <main class="mx-8 xl:mx-16 flex-grow flex flex-col">
+  <main
+    class="mx-8
+              xl:mx-16
+              flex
+              flex-col
+              flex-grow"
+  >
+    <HeroImage image={data.imageAboutMe} />
     <Hero outlinedImage={data.image} heroText={heroText} />
   </main>
   <FooterHero
     lang="de"
     image={data.imageAboutMe}
+    imageDesktop={data.imageAboutMeDesktop}
     aboutMeText="mehr über mich · mehr über mich ·"
     circleFontSize="13"
     text={`Layout- und Logo Gestaltung, Illustrationen, Cover Art,\nPoster & Print Design, Lettering & Font Design,\nKonzept- und Kommunikationsdesign, Social Media,\nFotoretusche, Typografie`}

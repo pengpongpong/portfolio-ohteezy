@@ -8,7 +8,10 @@ const { introAnimation }: Props = Astro.props;
 
 <span
   class:list={[
-    "inline-block translate-y-[20vh] motion-reduce:translate-y-0 motion-reduce:animate-none",
+    `inline-block 
+    translate-y-[20vh] 
+    motion-reduce:translate-y-0 
+    motion-reduce:animate-none`,
     introAnimation,
   ]}
 >

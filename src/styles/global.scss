@@ -38,6 +38,10 @@ html {
   color: white;
 }
 
+body[data-path="landing"] {
+  overflow: hidden;
+}
+
 @layer base {
   .font-outline {
     cursor: pointer;
@@ -59,7 +63,6 @@ html {
     4px 4px;
   background-repeat: no-repeat;
 }
-
 
 // hide label, only for screen readers
 form label {

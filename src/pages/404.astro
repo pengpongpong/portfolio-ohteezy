@@ -1,9 +1,9 @@
 ---
-import Navbar from "../components/navbar/Navbar";
-import Footer from "../components/footer/Footer.astro";
+import Navbar from "@components/navbar/Navbar";
+import Footer from "@components/footer/Footer.astro";
 
-import Layout from "../layouts/Layout.astro";
-import { getNavbar } from "../utils/query";
+import Layout from "@layouts/Layout.astro";
+import { getNavbar } from "@utils/query";
 
 const { pathname } = Astro.url;
 
@@ -28,7 +28,13 @@ const seo = {
     />
 
     <main
-        class="flex flex-col justify-center items-center gap-8 flex-grow font-poppins"
+        class="flex
+                flex-grow
+                flex-col
+                justify-center
+                items-center
+                gap-8
+                font-poppins"
     >
         <h1 class="text-8xl">404</h1>
         <p>Oops... Seite konnte nicht gefunden werden</p>
@@ -36,7 +42,11 @@ const seo = {
         <p class="text-xl">
             Gehe zu <a
                 href="/"
-                class="underline hover:text-orange transition-color duration-200 ease-in-out"
+                class="underline
+                    hover:text-orange
+                    transition-color
+                    duration-200
+                    ease-in-out"
                 >Home</a
             >
         </p>

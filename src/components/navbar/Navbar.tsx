@@ -1,6 +1,6 @@
-import { useRef, useState, type KeyboardEventHandler, type SyntheticEvent } from "react";
-import { urlFor, type SanityImage, type Lang } from "../../utils/utils";
-import "../../styles/navbar.scss";
+import { useRef, useState, type KeyboardEventHandler} from "react";
+import { urlFor, type SanityImage, type Lang } from "@utils/utils";
+import "@styles/navbar.scss";
 import { LanguageSwitch } from "./LanguageSwitch";
 
 export type NavData = {
@@ -94,7 +94,9 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
   const Hamburger = ({ handleMenu }: { handleMenu: () => void }) => {
 
     const handleKeyPress: KeyboardEventHandler<HTMLLabelElement> = (event) => {
-      if (event.key === "Enter" && checked === true) {
+      
+      // handle Enter and Space key
+      if ((event.keyCode === 13 || event.keyCode === 32) && checked === true) {
         setChecked(false)
         handleMenu()
       } else if (event.key === "Enter") {
@@ -105,7 +107,14 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
     return (
       <label
         tabIndex={0}
-        className="group w-8 h-8 mr-4 bg-transparent cursor-pointer relative"
+        className="
+                  group 
+                  w-8 
+                  h-8 
+                  mr-4 
+                  relative
+                  bg-transparent 
+                  cursor-pointer"
         htmlFor="burger"
         role="menu"
         aria-expanded={checked}
@@ -114,8 +123,43 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
         onClick={handleMenu}
         onKeyDown={handleKeyPress}>
         <input type="checkbox" className="sr-only peer" defaultChecked={checked} id="burger" />
-        <span className={`block w-full h-0.5 bg-white group-hover:bg-orange hover:text-white transition-colors duration-200 ease-in-out rounded-lg absolute top-1/2 left-1/2 rotate-90 animate-[hamburgerMoveBack_0.4s_0.4s_ease-in-out_forwards] peer-checked:left-0 peer-checked:animate-[hamburgerMove_0.4s_ease-in-out_forwards]`}></span>
-        <span className={`block w-full h-0.5 bg-white group-hover:bg-orange hover:text-white transition-colors duration-200 ease-in-out rounded-lg absolute top-1/2 left-1/2 rotate-90 animate-[hamburgerRotateBack_0.4s_ease-in-out_forwards] peer-checked:animate-[hamburgerRotate_0.4s_0.3s_ease-in-out_forwards]`}></span>
+        <span className={`
+                      w-full 
+                      h-0.5 
+                      block 
+                      absolute 
+                      top-1/2 
+                      left-1/2 
+                      peer-checked:left-0 
+                      rotate-90 
+                      rounded-lg 
+                    bg-white 
+                    group-hover:bg-orange 
+                    hover:text-white 
+                      transition-colors 
+                      duration-200 
+                      ease-in-out 
+                      animate-[hamburgerMoveBack_0.4s_0.4s_ease-in-out_forwards] 
+                      peer-checked:animate-[hamburgerMove_0.4s_ease-in-out_forwards]`}
+        ></span>
+        <span className={`
+                      w-full 
+                      h-0.5 
+                      block 
+                      absolute 
+                      top-1/2 
+                      left-1/2 
+                      rotate-90 
+                      rounded-lg 
+                    bg-white 
+                    group-hover:bg-orange 
+                    hover:text-white 
+                      transition-colors 
+                      duration-200 
+                      ease-in-out 
+                      animate-[hamburgerRotateBack_0.4s_ease-in-out_forwards] 
+                      peer-checked:animate-[hamburgerRotate_0.4s_0.3s_ease-in-out_forwards]`}
+        ></span>
       </label>
     )
   }
@@ -163,36 +207,88 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
   const styles = {
     logo:
       pathname === "/" || pathname === "/en"
-        ? "translate-y-[30vh] animate-[slideIn30_1s_4.2s_ease-in-out_forwards] xl:animate-[slideIn_1s_4.2s_ease-in-out_forwards]"
+        ? `translate-y-[30vh] 
+            animate-[slideIn30_1s_4.2s_ease-in-out_forwards] 
+            xl:animate-[slideIn_1s_4.2s_ease-in-out_forwards]`
         : "translate-y-[0]",
     nav:
       pathname === "/" || pathname === "/en"
-        ? "translate-y-[40vh] animate-[slideInMob40_1s_4.5s_ease-in-out_forwards]"
+        ? `translate-y-[40vh] 
+            animate-[slideInMob40_1s_4.5s_ease-in-out_forwards]`
         : "translate-y-0"
   };
 
 
   return (
-    <header className="m-8 xl:mx-16 xl:mt-12 3xl:mx-24 3xl:mt-16 xl:mb-8">
+    <header
+      className="
+                m-8 
+                xl:mx-16 
+                xl:mt-12 
+                3xl:mx-24 
+                3xl:mt-16 
+                xl:mb-8"
+    >
       {/* nav bar */}
-      <nav className="flex flex-col xl:flex-row gap-8 xl:gap-0 justify-between items-start">
+      <nav
+        className="
+                flex 
+                flex-col 
+                xl:flex-row 
+                justify-between 
+                items-start
+                gap-8 
+                xl:gap-0"
+      >
         {navData.logo ? <a href={lang === "en" ? "/en" : "/"} aria-label={lang === "en" ? "go to home page" : "gehe zur Home Seite"}>
           <img
             width={100}
             height={22}
-            className={`${styles.logo} motion-reduce:translate-y-0 motion-reduce:animate-none z-50 xl:z-0 relative`}
+            className={`
+                    ${styles.logo} 
+                    z-50 
+                    xl:z-0
+                    relative
+                    motion-reduce:translate-y-0 motion-reduce:animate-none`
+            }
             src={urlFor(navData.logo).size(2560, 566).url()}
             alt="oh-teezy logo"
           />
         </a> : ""}
 
         <nav
-          className={`w-full xl:w-auto flex items-center justify-between xl:justify-center gap-8 ${styles.nav} motion-reduce:translate-y-0 motion-reduce:animate-none`}
+          className={`
+                    w-full 
+                    xl:w-auto 
+                    flex 
+                    items-center justify-between 
+                    xl:justify-center 
+                    gap-8 
+                    ${styles.nav} 
+                    motion-reduce:translate-y-0 motion-reduce:animate-none`}
         >
           <a
             href={lang === "en" ? "/en/contact" : "/kontakt"}
             aria-label={lang === "en" ? "go to contact page" : "gehe zur Kontakt Seite"}
-            className="w-44 text-sm xl:w-40 h-8 py-6 px-4 flex justify-center items-center bg-white text-black hover:bg-orange hover:text-white transition-colors duration-200 ease-in-out font-poppins rounded-full">
+            className="
+                      w-44 
+                      xl:w-40 
+                      h-8 
+                      py-6 
+                      px-4 
+                      flex 
+                      justify-center 
+                      items-center 
+                      rounded-full
+                    bg-white 
+                    hover:bg-orange 
+                    hover:text-white 
+                      transition-colors 
+                      duration-200 
+                      ease-in-out 
+                      font-poppins 
+                    text-black 
+                      text-sm">
             {contactButtonText}
           </a>
           <LanguageSwitch pathname={pathname} lang={lang} />
@@ -200,7 +296,21 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
         </nav>
 
         {/* overlay */}
-        <div className={`w-full h-[calc(100vh-136px)] xl:h-[calc(100vh-128px)] flex overflow-hidden invisible absolute top-[8.5rem] xl:top-32 left-0 z-30`} ref={overlayRef}>
+        <div
+          className={`
+                  w-full 
+                  h-[calc(100vh-136px)] 
+                  xl:h-[calc(100vh-128px)] 
+                  flex 
+                  absolute 
+                  top-[8.5rem] 
+                  xl:top-32 
+                  left-0 
+                  z-30
+                  invisible 
+                  overflow-hidden`}
+          ref={overlayRef}
+        >
           <Stripe checked={checked} fullHeightAnimation="animate-[fullHeight_0.5s_ease-in-out_forwards]" noHeightAnimation="animate-[noHeight_0.5s_.7s_ease-in-out_forwards]" />
           <Stripe checked={checked} fullHeightAnimation="animate-[fullHeight_0.5s_0.1s_ease-in-out_forwards]" noHeightAnimation="animate-[noHeight_0.5s_.8s_ease-in-out_forwards]" />
           <Stripe checked={checked} fullHeightAnimation="animate-[fullHeight_0.5s_0.2s_ease-in-out_forwards]" noHeightAnimation="animate-[noHeight_0.5s_.9s_ease-in-out_forwards]" />
@@ -211,9 +321,34 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
       </nav >
 
       {/* nav bar menu */}
-      <div id="navlist" className="w-full h-[calc(100vh-136px)] xl:h-[calc(100vh-128px)] hidden invisible flex-col xl:flex-row xl:justify-between overflow-hidden absolute top-[8.5rem] xl:top-32 left-0 z-30" ref={menuRef} >
+      <div
+        id="navlist"
+        className="
+                  w-full 
+                  h-[calc(100vh-136px)] 
+                  xl:h-[calc(100vh-128px)] 
+                  flex-col 
+                  xl:flex-row 
+                  xl:justify-between 
+                  absolute 
+                  top-[8.5rem] 
+                  xl:top-32 
+                  left-0 
+                  z-30
+                  overflow-hidden 
+                  hidden 
+                  invisible"
+        ref={menuRef}
+      >
         <nav>
-          <ul className="ml-8 xl:ml-16 mt-8 xl:mt-16 w-fit" ref={menuListRef}>
+          <ul
+            className="
+                      w-fit
+                      ml-8 
+                      xl:ml-16 
+                      mt-8 
+                      xl:mt-16"
+            ref={menuListRef}>
             <NavList
               lang={lang}
               checked={checked}
@@ -252,10 +387,20 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
               slideOutAnimation="animate-[slideOut_.5s_.3s_ease-in-out_forwards]" />
           </ul>
         </nav>
-        <div className="xl:mr-16 flex gap-8 md:justify-center">
+        <div
+          className="
+                    xl:mr-16 
+                    flex 
+                    gap-8 
+                    md:justify-center"
+        >
           {navData.leftImage && navData.rightImage ? <>
             <NavImage
-              styles="mx-8 xl:mx-0 w-full md:w-[300px]"
+              styles="
+                      w-full 
+                      md:w-[300px]
+                      mx-8 
+                      xl:mx-0"
               slideInAnimation="translate-y-[100vh] animate-[slideInImage_.8s_1s_ease-in-out_forwards]"
               slideOutAnimation="translate-y-0 animate-[slideOutImage_.8s_.6s_ease-in-out_forwards]"
               imgSrc={navData.leftImage}
@@ -263,7 +408,10 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
               checked={checked}
             />
             <NavImage
-              styles="hidden md:block md:w-[300px]"
+              styles="
+                    md:w-[300px]
+                    md:block 
+                    hidden"
               slideInAnimation="translate-y-[100vh] animate-[slideInImage_.8s_1.1s_ease-in-out_forwards]"
               slideOutAnimation="translate-y-0 animate-[slideOutImage_.8s_.7s_ease-in-out_forwards]"
               imgSrc={navData.rightImage}

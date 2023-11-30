@@ -6,6 +6,7 @@ export async function getHome() {
     const query = groq`*[_type == "home"][0]{
         image,
         imageAboutMe,
+        imageAboutMeDesktop,
         seo
     }`;
     const doc = await useSanityClient().fetch(query);

@@ -1,6 +1,6 @@
 ---
-import { getContact } from "../../utils/query";
-import type { Lang } from "../../utils/utils";
+import { getContact } from "@utils/query";
+import type { Lang } from "@utils/utils";
 
 type Props = {
   lang: Lang;
@@ -19,10 +19,25 @@ const { lang }: Props = Astro.props;
 ---
 
 <footer
-  class="w-full mt-12 mb-8 pt-4 flex flex-col justify-center items-center gap-4 border-t border-white font-poppin text-sm"
+  class="w-full
+        mt-12
+        mb-8
+        pt-4
+        flex
+        flex-col
+        justify-center
+        items-center
+        gap-4
+        border-t
+      border-white
+        font-poppin
+        text-sm"
 >
-  <nav class="flex flex-col gap-4">
-    <ul class="flex gap-4">
+  <nav class="flex
+        flex-col
+        gap-4">
+    <ul class="flex
+              gap-4">
       <li class="group">
         <a
           href={lang === "en" ? "/en/contact" : "/kontakt"}
@@ -30,44 +45,72 @@ const { lang }: Props = Astro.props;
           >{lang === "en" ? "Contact" : "Kontakt"}
         </a>
         <span
-          class="block w-0 h-[1px] bg-orange group-hover:w-full transition-all duration-300"
+          class="w-0
+                h-[1px]
+                block
+              bg-orange
+                group-hover:w-full
+                transition-all
+                duration-300"
         ></span>
       </li>
       <li class="group">
         <a
           href={lang === "en" ? "/en/privacy-policy" : "/datenschutz"}
-          class="group-hover:text-orange transition-color duration-300"
+          class="group-hover:text-orange
+                transition-color
+                duration-300"
           >{lang === "en" ? "Privacy Policy" : "Datenschutz"}
         </a>
         <span
-          class="block w-0 h-[1px] bg-orange group-hover:w-full transition-all duration-300"
+          class="w-0
+                h-[1px]
+                block
+              bg-orange
+                group-hover:w-full
+                transition-all
+                duration-300"
         ></span>
       </li>
       <li class="group">
         <a
           href={lang === "en" ? "/en/legal" : "/impressum"}
-          class="group-hover:text-orange transition-color duration-300"
+          class="group-hover:text-orange
+                  transition-color
+                  duration-300"
           >{lang === "en" ? "Legal" : "Impressum"}
         </a>
         <span
-          class="block w-0 h-[1px] bg-orange group-hover:w-full transition-all duration-300"
+          class="w-0
+                h-[1px]
+                block
+              bg-orange
+                group-hover:w-full
+                transition-all
+                duration-300"
         ></span>
       </li>
     </ul>
-    <ul class="flex gap-8 justify-center">
+    <ul class="flex
+              gap-8
+              justify-center">
       <li>
-        <a 
-        href={`mailto:${data.email}`}
-        aria-label={lang === "en" ? "write email" : "verfasse Email"}
-        rel="noreferrer noopener" 
-        class="group">
+        <a
+          href={`mailto:${data.email}`}
+          aria-label={lang === "en" ? "write email" : "verfasse Email"}
+          rel="noreferrer noopener"
+          class="group"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="#ffffff"
             width="24"
             height="24"
             viewBox="0 0 24 24"
-            class="group-hover:fill-orange transition-colors duration-200 ease-in-out"
+            class="group-hover:fill-orange
+                  transition-colors
+                  duration-200
+                  ease-in-out"
             ><path
               d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z"
             ></path></svg
@@ -75,19 +118,25 @@ const { lang }: Props = Astro.props;
         </a>
       </li>
       <li>
-        <a 
-        href={data.instagram} 
-        target="_blank" 
-        aria-label={lang === "en" ? "visit Instagram Profile" : "besuche Instagram Profil"}
-        rel="noreferrer noopener" 
-        class="group">
+        <a
+          href={data.instagram}
+          target="_blank"
+          aria-label={lang === "en"
+            ? "visit Instagram Profile"
+            : "besuche Instagram Profil"}
+          rel="noreferrer noopener"
+          class="group"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="#ffffff"
             width="24"
             height="24"
-            class="group-hover:fill-orange transition-colors duration-200 ease-in-out"
+            class="group-hover:fill-orange
+                  transition-colors
+                  duration-200
+                  ease-in-out"
             ><path
               d="M11.999 7.377a4.623 4.623 0 1 0 0 9.248 4.623 4.623 0 0 0 0-9.248zm0 7.627a3.004 3.004 0 1 1 0-6.008 3.004 3.004 0 0 1 0 6.008z"
             ></path><circle cx="16.806" cy="7.207" r="1.078"></circle><path
@@ -97,19 +146,26 @@ const { lang }: Props = Astro.props;
         </a>
       </li>
       <li>
-        <a 
-        href={data.linkedIn}  
-        aria-label={lang === "en" ? "visit LinkedIn Profile" : "besuche LinkedIn Profil"}
-        target="_blank" 
-        rel="noreferrer noopener" 
-        class="group">
+        <a
+          href={data.linkedIn}
+          aria-label={lang === "en"
+            ? "visit LinkedIn Profile"
+            : "besuche LinkedIn Profil"}
+          target="_blank"
+          rel="noreferrer noopener"
+          class="group"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="#ffffff"
             width="24"
             height="24"
-            class="group-hover:fill-orange transition-colors duration-200 ease-in-out"
+            class="
+                group-hover:fill-orange 
+                  transition-colors 
+                  duration-200 
+                  ease-in-out"
             ><circle cx="4.983" cy="5.009" r="2.188"></circle><path
               d="M9.237 8.855v12.139h3.769v-6.003c0-1.584.298-3.118 2.262-3.118 1.937 0 1.961 1.811 1.961 3.218v5.904H21v-6.657c0-3.27-.704-5.783-4.526-5.783-1.835 0-3.065 1.007-3.568 1.96h-.051v-1.66H9.237zm-6.142 0H6.87v12.139H3.095z"
             ></path></svg

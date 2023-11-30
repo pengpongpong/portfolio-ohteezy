@@ -1,13 +1,11 @@
 ---
-import Layout, { type SeoEN } from "../../../../layouts/Layout.astro";
+import Layout, { type SeoEN } from "@layouts/Layout.astro";
 
-import Navbar, { type NavData } from "../../../../components/navbar/Navbar";
-import Footer from "../../../../components/footer/Footer.astro";
+import Navbar, { type NavData } from "@components/navbar/Navbar";
+import Footer from "@components/footer/Footer.astro";
 
-import { getNavbar, getWorkSketch } from "../../../../utils/query";
-import WorkSketch, {
-  type WorkSketchType,
-} from "../../../../components/work/WorkSketch.astro";
+import { getNavbar, getWorkSketch } from "@utils/query";
+import WorkSketch, { type WorkSketchType } from "@components/work/WorkSketch.astro";
 
 interface WorkSketchData extends WorkSketchType {
   seo: SeoEN;

@@ -39,7 +39,7 @@ export function getLocalStorage(item: string) {
 export const setCookie = (item: string, value: string) => {
     if (!window) return console.error("no window defined")
 
-    return document.cookie = `${item}=${value}; max-age=31536000;`
+    return document.cookie = `${item}=${value}; max-age=31536000;Secure;SameSite=Strict`
 }
 
 // set cookie

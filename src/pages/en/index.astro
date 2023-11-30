@@ -1,16 +1,17 @@
 ---
-import Layout, { type SeoEN } from "../../layouts/Layout.astro";
+import Layout, { type SeoEN } from "@layouts/Layout.astro";
 
-import Navbar, { type NavData } from "../../components/navbar/Navbar";
-import Hero from "../../components/hero/Hero.astro";
-import FooterHero from "../../components/footer/FooterHero.astro";
+import Navbar, { type NavData } from "@components/navbar/Navbar";
+import Hero from "@components/hero/Hero.astro";
+import FooterHero from "@components/footer/FooterHero.astro";
 
-import { urlFor, type SanityImage } from "../../utils/utils";
-import { getHome, getNavbar } from "../../utils/query";
+import { urlFor, type SanityImage } from "@utils/utils";
+import { getHome, getNavbar } from "@utils/query";
 
 type Home = {
   image: SanityImage;
   imageAboutMe: SanityImage;
+  imageAboutMeDesktop: SanityImage;
   seo: SeoEN;
 };
 
@@ -39,7 +40,7 @@ const heroText = {
 };
 ---
 
-<Layout lang="en" seo={seo}>
+<Layout path="landing" lang="en" seo={seo}>
   <Navbar
     lang="en"
     contactButtonText="Get in touch"
@@ -55,6 +56,7 @@ const heroText = {
   <FooterHero
     lang="en"
     image={data.imageAboutMe}
+    imageDesktop={data.imageAboutMeDesktop}
     aboutMeText="more about me · more about me ·"
     circleFontSize="13.3"
     text={`Layout- and Logo design, Illustration, Cover Art,\nPoster & Print Design, Lettering & Font Design,\nConcept- und Communicationdesign, Social Media,\nPhoto retouching, Typografie`}

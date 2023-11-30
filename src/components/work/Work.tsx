@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Lang } from "../../utils/utils";
+import type { Lang } from "@utils/utils";
 
 type WorkLinkProps = {
     url: string;
@@ -33,7 +33,7 @@ const Work = ({ lang }: { lang: Lang }) => {
 
     return (
         <main className="m-8 xl:m-16 flex justify-center items-center flex-grow font-poppins overflow-hidden">
-            <section className="flex justify-center items-center ">
+            <section aria-label={lang === "en" ? "Projects" : "Projekte"} className="flex justify-center items-center ">
                 <ul className="w-max h-fit grid place-content-center">
                     <WorkLink
                         url="/work/corporate"

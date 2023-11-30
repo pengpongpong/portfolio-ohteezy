@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Controller, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import type { Lang } from "../../utils/utils"
+import type { Lang } from "@utils/utils"
 
 import PuffLoader from "react-spinners/PuffLoader"
 

@@ -1,7 +1,7 @@
 ---
-import type { SanityImage } from "../../utils/utils";
-import HeroMain from "../hero/HeroMain";
-import IntroSpan from "../hero/IntroSpan.astro";
+import type { SanityImage } from "@utils/utils";
+import HeroMain from "@components/hero/HeroMain";
+import IntroSpan from "@components/hero/IntroSpan.astro";
 
 type Props = {
   outlinedImage: SanityImage;
@@ -16,9 +16,33 @@ type Props = {
 const { outlinedImage, heroText }: Props = Astro.props;
 ---
 
-<section class="3xl:mx-8 h-[40vh] flex-grow select-none" id="heroContainer">
+<section
+  aria-label="Landingpage"
+  class="3xl:mx-8
+        h-fit
+        xl:h-[40vh]
+        select-none"
+  id="heroContainer"
+>
   <p
-    class="my-auto mx-8 h-[60px] xl:h-[150px] xl:w-[650px] overflow-hidden font-poppins text-base md:text-2xl xl:text-5xl absolute top-2/4 left-0 xl:left-2/4 -translate-y-1/2 xl:-translate-x-1/2 z-10 animate-[hideVisibility_1s_3.5s_linear_forwards]"
+    class="my-auto
+          mx-8
+          h-[60px]
+          xl:h-[150px]
+          xl:w-[650px]
+          overflow-hidden
+          absolute
+          top-2/4
+          left-0
+          xl:left-2/4
+          -translate-y-1/2
+          xl:-translate-x-1/2
+          z-10
+          font-poppins
+          text-base
+          md:text-2xl
+          xl:text-5xl
+          animate-[hideVisibility_1s_3.5s_linear_forwards]"
   >
     <IntroSpan introAnimation="animate-[slideInOut_4s_ease-in-out_forwards]">
       Hallo,

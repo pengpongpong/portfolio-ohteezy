@@ -1,4 +1,4 @@
-import type { Lang } from "../../utils/utils";
+import type { Lang } from "@utils/utils";
 
 export const LanguageSwitch = ({ pathname, lang }: { pathname: string, lang: Lang }) => {
     // get correct path

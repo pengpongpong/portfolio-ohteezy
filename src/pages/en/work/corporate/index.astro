@@ -1,13 +1,13 @@
 ---
-import Layout, { type SeoEN } from "../../../../layouts/Layout.astro";
+import Layout, { type SeoEN } from "@layouts/Layout.astro";
 
-import NavbarMenu, { type NavData } from "../../../../components/navbar/Navbar";
-import Footer from "../../../../components/footer/Footer.astro";
+import NavbarMenu, { type NavData } from "@components/navbar/Navbar";
+import Footer from "@components/footer/Footer.astro";
 
-import { getNavbar, getWorkCorporate } from "../../../../utils/query";
+import { getNavbar, getWorkCorporate } from "@utils/query";
 import WorkCorporate, {
     type WorkCorporateType,
-} from "../../../../components/work/WorkCorporate.astro";
+} from "@components/work/WorkCorporate.astro";
 
 interface WorkCorporateData extends WorkCorporateType {
     seo: SeoEN;

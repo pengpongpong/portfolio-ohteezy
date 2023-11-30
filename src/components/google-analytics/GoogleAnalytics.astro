@@ -6,7 +6,7 @@ const { analytics, advertisement } = Astro.props;
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GMHSJSEHGX"
     ></script>
 
-    <script>
+    <script is:raw>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
             dataLayer.push(arguments);
@@ -19,7 +19,7 @@ const { analytics, advertisement } = Astro.props;
     {/* advertisement consent */}
 
     {advertisement === "granted" 
-    ? <script>
+    ? <script is:raw>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
             dataLayer.push(arguments);
@@ -29,7 +29,7 @@ const { analytics, advertisement } = Astro.props;
             "ad_storage": "granted",
         });
     </script>
-    : <script>
+    : <script is:raw>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
             dataLayer.push(arguments);
@@ -43,7 +43,7 @@ const { analytics, advertisement } = Astro.props;
   {/* analytics consent */}
 
     {analytics === "granted" 
-    ? <script>
+    ? <script is:raw>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
             dataLayer.push(arguments);
@@ -53,7 +53,7 @@ const { analytics, advertisement } = Astro.props;
             "analytics_storage": "granted",
         });
     </script>
-    : <script>
+    : <script is:raw>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
             dataLayer.push(arguments);

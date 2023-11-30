@@ -1,12 +1,12 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 
-import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/Footer.astro";
-import LegalSection from "../../components/legal/LegalSection.astro";
+import Navbar from "@components/navbar/Navbar";
+import Footer from "@components/footer/Footer.astro";
+import LegalSection from "@components/legal/LegalSection.astro";
 
-import { ShowCookieModal } from "../../components/cookie-banner/CookieBanner";
-import { getNavbar } from "../../utils/query";
+import { ShowCookieModal } from "@components/cookie-banner/CookieBanner";
+import { getNavbar } from "@utils/query";
 
 const { pathname } = Astro.url;
 
