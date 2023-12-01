@@ -2,11 +2,10 @@
 import Layout, { type Seo } from "@layouts/Layout.astro";
 
 import Navbar, { type NavData } from "@components/navbar/Navbar";
+import Contact from "@components/contact/Contact.astro";
 import Footer from "@components/footer/Footer.astro";
 
-import ContactForm from "@components/contact/ContactForm";
 import { getContact, getNavbar } from "@utils/query";
-import ContactLinks from "@components/contact/ContactLinks.astro";
 
 type Contact = {
   email: string;
@@ -40,16 +39,6 @@ const seo = {
     transition:persist="navbar"
   />
 
-  <main class="m-8 xl:m-16 flex flex-col flex-grow justify-center items-center">
-    <ContactLinks
-      email={data.email}
-      instagram={data.instagram}
-      linkedIn={data.linkedIn}
-      lang="de"
-    />
-    <div class="my-12 w-full max-w-[600px]">
-      <ContactForm lang="de" api={api} url={url} client:visible />
-    </div>
-  </main>
+  <Contact data={data} api={api} url={url} lang="de" />
   <Footer lang="de" />
 </Layout>

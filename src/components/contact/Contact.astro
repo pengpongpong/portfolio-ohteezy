@@ -1,0 +1,40 @@
+---
+import type { Lang } from "@utils/utils";
+import ContactForm from "./ContactForm";
+import ContactLinks from "./ContactLinks.astro";
+
+type Props = {
+    data: {
+        email: string;
+        instagram: string;
+        linkedIn: string;
+    };
+    api: string;
+    url: string;
+    lang: Lang;
+};
+
+const { data, api, url, lang }: Props = Astro.props;
+---
+
+<main
+    class="m-8
+            xl:m-16
+            flex
+            flex-col
+            flex-grow
+            justify-center
+            items-center"
+>
+    <ContactLinks
+        email={data.email}
+        instagram={data.instagram}
+        linkedIn={data.linkedIn}
+        lang={lang}
+    />
+    <div class="my-12
+                w-full
+                max-w-[600px]">
+        <ContactForm lang={lang} api={api} url={url} client:visible />
+    </div>
+</main>

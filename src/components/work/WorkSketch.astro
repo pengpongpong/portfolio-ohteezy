@@ -26,15 +26,37 @@ type Props = {
 const { data, headline, lang } = Astro.props;
 ---
 
-<main class="mb-8 ml-8 mr-8 xl:mb-16 xl:ml-16 xl:mr-16 flex-grow">
+<main
+    class="mb-8
+            ml-8
+            mr-8
+            xl:mb-16
+            xl:ml-16
+            xl:mr-16
+            flex-grow"
+>
     <WorkReturnButton lang={lang} />
     <h1
-        class="mb-8 xl:mb-16 font-poppins text-center text-3xl sm:text-4xl md:text-5xl xl:text-6xl"
+        class="mb-8
+                xl:mb-16
+                font-poppins
+                text-center
+                text-3xl
+                sm:text-4xl
+                md:text-5xl
+                xl:text-6xl"
     >
         {headline}
     </h1>
     <div
-        class="max-w-[1300px] mx-auto flex gap-8 flex-wrap justify-center items-center"
+        class="max-w-[1300px]
+                
+                mx-auto
+                flex
+                gap-8 
+                flex-wrap 
+                justify-center 
+                items-center"
     >
         {
             data.sketch?.map((obj) => {
@@ -44,7 +66,7 @@ const { data, headline, lang } = Astro.props;
                             width={1689}
                             height={2560}
                             loading="eager"
-                            class="w-[25rem] h-[35rem]"
+                            class="w-[25rem] h-[28rem] xl:h-[35rem]"
                             src={urlFor(obj.image).size(1689, 2560).url()}
                             alt={obj.imageAlt}
                         />
@@ -56,7 +78,10 @@ const { data, headline, lang } = Astro.props;
                             width={1664}
                             height={2560}
                             loading="eager"
-                            class="w-full h-fit xl:w-fit xl:h-[30rem]"
+                            class="w-full 
+                                    h-fit 
+                                    xl:w-fit 
+                                    xl:h-[30rem]"
                             src={urlFor(obj.image).size(2560, 1664).url()}
                             alt={obj.imageAlt}
                         />

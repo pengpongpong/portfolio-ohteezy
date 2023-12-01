@@ -10,13 +10,12 @@ type WorkLinkProps = {
     enterHover: () => void;
     exitHover: () => void;
 }
-//!
+
 const WorkLink = ({ url, title, styles, animation, lang, enterHover, exitHover }: WorkLinkProps) => {
     return (
         <li className={`
         h-[3.5rem] 
         overflow-hidden 
-        ${styles} 
         text-4xl 
         xl:text-5xl 
         cursor-pointer 
@@ -25,10 +24,25 @@ const WorkLink = ({ url, title, styles, animation, lang, enterHover, exitHover }
         duration-200 
         ease-in-out 
         focus-visible:outline-1 
-        focus-visible:outline`}
+        focus-visible:outline
+        ${styles}`
+        }
             onMouseEnter={enterHover}
-            onMouseLeave={exitHover}>
-            <a className={`inline-block translate-y-[25rem] ${animation} motion-reduce:translate-y-0 motion-reduce:animate-none`} href={`${lang === "en" ? "/en" : ""}${url}`}>{title}</a>
+            onMouseLeave={exitHover}
+            onTouchStart={enterHover}
+        >
+            <a className={`
+                        inline-block 
+                        translate-y-[25rem] 
+                        ${animation} 
+                        motion-reduce:translate-y-0 
+                        motion-reduce:animate-none`}
+                href={`${lang === "en"
+                    ? "/en"
+                    : ""}${url}`}
+            >
+                {title}
+            </a>
         </li>
     )
 }
@@ -93,8 +107,37 @@ const Work = ({ lang }: { lang: Lang }) => {
                         key="poster"
                     />
                 </ul>
-                <div className="w-16 h-full md:w-fit flex items-center justify-center">
-                    <p className={`${show ? "text-orange" : ""} mb-2 h-full xl:mb-0 md:leading-none rotate-90 md:rotate-0 text-[3.1rem] md:text-[12rem] xl:text-[18rem] translate-x-[50vh] md:translate-x-[150vh] animate-[slideInRightRotated_1s_1s_ease-in-out_forwards] md:animate-[slideInRight_1s_1s_ease-in-out_forwards] motion-reduce:animate-none motion-reduce:translate-x-0 md:motion-reduce:animate-none md:motion-reduce:translate-x-0 tracking-wider uppercase transition-colors duration-200 ease-in-out`}>design</p>
+                <div className="w-16 
+                                h-full 
+                                md:w-fit 
+                                flex 
+                                items-center 
+                                justify-center">
+                    <p className={`
+                                    ${show ? "text-orange" : ""} 
+                                    mb-2 
+                                    h-full 
+                                    xl:mb-0 
+                                    md:leading-none 
+                                    rotate-90 
+                                    md:rotate-0 
+                                    text-[3.1rem] 
+                                    md:text-[12rem] 
+                                    xl:text-[18rem] 
+                                    translate-x-[50vh] 
+                                    md:translate-x-[150vh] 
+                                    animate-[slideInRightRotated_1s_1s_ease-in-out_forwards] 
+                                    md:animate-[slideInRight_1s_1s_ease-in-out_forwards] 
+                                    motion-reduce:animate-none 
+                                    motion-reduce:translate-x-0 
+                                    md:motion-reduce:animate-none
+                                    md:motion-reduce:translate-x-0 
+                                    tracking-wider 
+                                    uppercase
+                                    transition-colors 
+                                    duration-200 
+                                    ease-in-out`
+                    }>design</p>
                 </div>
             </section>
         </main>

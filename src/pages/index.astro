@@ -51,16 +51,11 @@ const heroText = {
     transition:persist="navbar"
   />
 
-  <main
-    class="mx-8
-              xl:mx-16
-              flex
-              flex-col
-              flex-grow"
-  >
-    <HeroImage image={data.imageAboutMe} />
-    <Hero outlinedImage={data.image} heroText={heroText} />
-  </main>
+  <Hero
+    outlinedImage={data.image}
+    heroText={heroText}
+    image={data.imageAboutMe}
+  />
   <FooterHero
     lang="de"
     image={data.imageAboutMe}

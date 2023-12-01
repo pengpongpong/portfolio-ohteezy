@@ -1,0 +1,25 @@
+---
+import type { Lang } from "@utils/utils";
+
+type Props = {
+    lang: Lang;
+};
+
+const { lang }: Props = Astro.props;
+---
+
+<main
+    class="m-8
+            xl:m-16
+            flex-grow
+            font-poppins"
+>
+    <h1 class="mb-8 text-4xl">
+        {lang === "en" ? "Legal" : "Impressum"}
+    </h1>
+    <p>Oh Teezy</p>
+    <p>{lang === "en" ? "Owner" : "Inhaber"} Pham Martin</p>
+    <p class="my-8">
+        {lang === "en" ? "Certified graphic designer" : "Dipl. Grafik Designer"}
+    </p>
+</main>

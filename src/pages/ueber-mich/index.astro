@@ -5,9 +5,7 @@ import Navbar, { type NavData } from "@components/navbar/Navbar";
 import Footer from "@components/footer/Footer.astro";
 
 import { getAboutMe, getNavbar } from "@utils/query";
-import AboutMe, {
-  type AboutMeType,
-} from "@components/about-me/AboutMe.astro";
+import AboutMe, { type AboutMeType } from "@components/about-me/AboutMe.astro";
 import { urlFor } from "@utils/utils";
 
 interface AboutMeData extends AboutMeType {
@@ -42,10 +40,10 @@ const seo = {
     client:load
     transition:persist="navbar"
   />
-  <main class="m-8 flex flex-col justify-start items-center gap-16 flex-grow">
-    <AboutMe data={data}>
-      {data?.bio}
-    </AboutMe>
-  </main>
+
+  <AboutMe data={data}>
+    {data?.bio}
+  </AboutMe>
+
   <Footer lang="de" />
 </Layout>

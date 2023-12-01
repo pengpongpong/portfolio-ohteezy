@@ -2,7 +2,9 @@
 import Layout from "@layouts/Layout.astro";
 
 import Navbar from "@components/navbar/Navbar";
+import Legal from "@components/legal/Legal.astro";
 import Footer from "@components/footer/Footer.astro";
+
 import { getNavbar } from "@utils/query";
 
 const { pathname } = Astro.url;
@@ -28,11 +30,6 @@ const seo = {
     transition:persist="navbar"
   />
 
-  <main class="m-8 xl:m-16 flex-grow font-poppins">
-    <h1 class="mb-8 text-4xl">Legal</h1>
-    <p>Oh Teezy</p>
-    <p>Owner Pham Martin</p>
-    <p class="my-8">Certified graphic designer</p>
-  </main>
+  <Legal lang="en" />
   <Footer lang="en" />
 </Layout>

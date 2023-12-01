@@ -13,23 +13,33 @@ type Props = {
 const { data }: Props = Astro.props;
 ---
 
-<img
-    width={2048}
-    height={2048}
-    loading="eager"
-    class="w-[30rem] h-auto object-cover"
-    src={urlFor(data.profileImage).size(2048, 2048).url()}
-    alt=""
-/>
-<p class="max-w-[700px] tracking-wider italic">
-    <slot />
-</p>
-<picture class="w-full max-w-[700px] flex justify-center">
+<main class="m-8 flex flex-col justify-start items-center gap-16 flex-grow">
     <img
-        width={176}
-        height={105}
-        class="w-44"
-        src={urlFor(data.signatureImage).size(692, 409).url()}
+        width={2048}
+        height={2048}
+        loading="eager"
+        class="w-[30rem]
+            h-auto
+            object-cover"
+        src={urlFor(data.profileImage).size(2048, 2048).url()}
         alt=""
     />
-</picture>
+    <p class="max-w-[700px]
+        tracking-wider
+        italic">
+        <slot />
+    </p>
+    <picture
+        class="w-full
+            max-w-[700px] flex
+            justify-center"
+    >
+        <img
+            width={176}
+            height={105}
+            class="w-44"
+            src={urlFor(data.signatureImage).size(692, 409).url()}
+            alt=""
+        />
+    </picture>
+</main>

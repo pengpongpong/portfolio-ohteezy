@@ -1,7 +1,12 @@
 import { type MouseEvent, type TouchEvent, type ReactNode, type RefObject, useRef } from "react";
 import { urlFor, type SanityImage } from "@utils/utils";
 
-const SpanContainer = ({ children, styles }: { children: ReactNode, styles: string }) => {
+type SpanProps = {
+    children: ReactNode;
+    styles?: string
+}
+
+const SpanContainer = ({ children, styles }: SpanProps) => {
     return (
         <span
             className={`
@@ -17,17 +22,17 @@ const SpanContainer = ({ children, styles }: { children: ReactNode, styles: stri
     )
 }
 
-const Span = ({ children, styles }: { children: ReactNode, styles: string }) => {
+const Span = ({ children, styles }: SpanProps) => {
     return (
         <span
             className={`
                     w-fit 
                     h-full
                     inline-block 
-                    overflow-hidden 
+                    overflow-hidden
+                    whitespace-nowrap
                     translate-y-[10vh] 
                     xl:translate-y-[25vh] 
-                    ${styles} 
                     motion-reduce:animate-[showVisibility_1s_5s_ease-in-out_forwards] 
                     motion-reduce:translate-y-0 
                     motion-reduce:opacity-0 
@@ -35,7 +40,8 @@ const Span = ({ children, styles }: { children: ReactNode, styles: string }) => 
                     xl:motion-reduce:animate-[showVisibility_1s_5s_ease-in-out_forwards] 
                     xl:motion-reduce:translate-y-0 
                     xl:motion-reduce:opacity-0 
-                    xl:motion-reduce:invisible`}
+                    xl:motion-reduce:invisible
+                    ${styles}`}
         >
             {children}
         </span>
@@ -43,7 +49,7 @@ const Span = ({ children, styles }: { children: ReactNode, styles: string }) => 
 }
 
 // outlined text with image on cursor
-const SpanOutline = ({ children, styles, imageRef }: { children: ReactNode, styles: string, imageRef: RefObject<HTMLImageElement> }) => {
+const SpanOutline = ({ children, imageRef }: SpanProps & { imageRef: RefObject<HTMLImageElement> }) => {
 
     //mouse-move on span -> display image
     const enterSpan = (event: MouseEvent) => {
@@ -54,31 +60,6 @@ const SpanOutline = ({ children, styles, imageRef }: { children: ReactNode, styl
                 image.style.opacity = "1"
                 image.style.transform = `translate(${event.clientX + 20}px, ${event.clientY + 20}px)`
                 image.style.transition = "visibility .1s ease-in-out, opacity .2s ease-in-out"
-            }
-            requestAnimationFrame(showImage)
-        }
-    };
-
-    //touch-move on span -> display image and hide after timeout
-    const enterSpanTouch = (event: TouchEvent) => {
-        if (imageRef.current) {
-            const image = imageRef.current as HTMLImageElement
-
-            const hideImage = () => {
-                image.style.visibility = "hidden"
-                image.style.opacity = "0"
-                image.style.transition = "visibility .2s .2s ease-in-out, opacity .2s ease-in-out"
-            }
-
-            const showImage = () => {
-                image.style.visibility = "visible"
-                image.style.opacity = "1"
-                image.style.transform = `translate(${event.touches[0].clientX + 20}px, ${event.touches[0].clientY + 20}px)`
-                image.style.transition = "visibility .1s ease-in-out, opacity .2s .1s ease-in-out"
-
-                setTimeout(() => {
-                    hideImage()
-                }, 1500)
             }
             requestAnimationFrame(showImage)
         }
@@ -100,7 +81,8 @@ const SpanOutline = ({ children, styles, imageRef }: { children: ReactNode, styl
     return (
         <span
             className={`
-                    inline-block 
+                    hidden
+                    xl:inline-block 
                     w-fit 
                     h-full 
                     translate-y-[25vh] 
@@ -109,7 +91,12 @@ const SpanOutline = ({ children, styles, imageRef }: { children: ReactNode, styl
                     overflow-hidden 
                     font-outline
                     select-none
-                    ${styles} 
+                    leading-[2.5rem] 
+                    md:leading-[4.5rem] 
+                    xl:leading-[7rem] 
+                    3xl:leading-[9rem]
+                    animate-[slideInMob_1s_5.2s_ease-in-out_forwards] 
+                    xl:animate-[slideIn_1s_5.2s_ease-in-out_forwards]
                     motion-reduce:animate-[showVisibility_1s_5s_ease-in-out_forwards] 
                     motion-reduce:translate-y-0 
                     motion-reduce:opacity-0 
@@ -120,6 +107,66 @@ const SpanOutline = ({ children, styles, imageRef }: { children: ReactNode, styl
                     xl:motion-reduce:invisible`}
             onMouseOut={exitSpan}
             onMouseMove={enterSpan}
+        >
+            {children}
+        </span>
+    )
+}
+const SpanOutlineTouch = ({ children, imageRef, styles }: SpanProps & { imageRef: RefObject<HTMLImageElement> }) => {
+
+    //touch-move on span -> display image and hide after timeout
+    const enterSpanTouch = (event: TouchEvent) => {
+        event.preventDefault()
+        if (imageRef.current) {
+            const image = imageRef.current as HTMLImageElement
+
+            const hideImage = () => {
+                image.style.visibility = "hidden"
+                image.style.opacity = "0"
+                image.style.transition = "visibility .2s .3s ease-in-out, opacity .3s ease-in-out"
+            }
+
+            const showImage = () => {
+                image.style.visibility = "visible"
+                image.style.opacity = "1"
+                image.style.transform = `translate(${event.touches[0].clientX - 200}px, ${event.touches[0].clientY - 200}px)`
+                image.style.transition = "visibility .1s ease-in-out, opacity .2s .1s ease-in-out"
+
+                setTimeout(() => {
+                    hideImage()
+                }, 1000)
+            }
+            requestAnimationFrame(showImage)
+        }
+    };
+
+    return (
+        <span
+            className={`
+                    w-fit 
+                    h-full 
+                    translate-y-[25vh] 
+                    relative 
+                    z-20 
+                    overflow-hidden 
+                    font-outline
+                    select-none
+                    leading-[2.5rem] 
+                    md:leading-[4.5rem] 
+                    xl:leading-[7rem] 
+                    3xl:leading-[9rem]
+                    animate-[slideInMob_1s_5.2s_ease-in-out_forwards] 
+                    xl:animate-[slideIn_1s_5.2s_ease-in-out_forwards]
+                    motion-reduce:animate-[showVisibility_1s_5s_ease-in-out_forwards] 
+                    motion-reduce:translate-y-0 
+                    motion-reduce:opacity-0 
+                    motion-reduce:invisible 
+                    xl:motion-reduce:animate-[showVisibility_1s_5s_ease-in-out_forwards] 
+                    xl:motion-reduce:translate-y-0 
+                    xl:motion-reduce:opacity-0 
+                    xl:motion-reduce:invisible
+                    ${styles}
+                    `}
             onTouchStart={enterSpanTouch}
         >
             {children}
@@ -127,7 +174,17 @@ const SpanOutline = ({ children, styles, imageRef }: { children: ReactNode, styl
     )
 }
 
-const HeroMain = ({ image, heroText }: { image: SanityImage, heroText: { first: string, second: string, third: string, fourth: string } }) => {
+type HeroMain = {
+    image: SanityImage;
+    heroText: {
+        first: string;
+        second: string;
+        third: string;
+        fourth: string;
+    }
+}
+
+const HeroMain = ({ image, heroText }: HeroMain) => {
     const imageRef = useRef<HTMLImageElement>(null)
 
     return (
@@ -196,6 +253,8 @@ const HeroMain = ({ image, heroText }: { image: SanityImage, heroText: { first: 
                         {heroText?.third}
                     </Span>{" "}
                     <SpanOutline styles="
+                                        hidden
+                                        xl:inline-block
                                         leading-[2.5rem] 
                                         md:leading-[4.5rem] 
                                         xl:leading-[7rem] 
@@ -206,6 +265,19 @@ const HeroMain = ({ image, heroText }: { image: SanityImage, heroText: { first: 
                     >
                         {heroText?.fourth}
                     </SpanOutline>
+                    <SpanOutlineTouch styles="
+                                        inline-block
+                                        xl:hidden
+                                        leading-[2.5rem] 
+                                        md:leading-[4.5rem] 
+                                        xl:leading-[7rem] 
+                                        3xl:leading-[9rem]
+                                        animate-[slideInMob_1s_5.2s_ease-in-out_forwards] 
+                                        xl:animate-[slideIn_1s_5.2s_ease-in-out_forwards]"
+                        imageRef={imageRef}
+                    >
+                        {heroText?.fourth}
+                    </SpanOutlineTouch>
                 </SpanContainer>
             </h1>
             <img
@@ -226,7 +298,8 @@ const HeroMain = ({ image, heroText }: { image: SanityImage, heroText: { first: 
                 src={urlFor(image).size(2560, 2560).url()}
                 alt="poster"
                 ref={imageRef}
-                aria-hidden="true" />
+                aria-hidden="true"
+            />
         </>
     )
 }

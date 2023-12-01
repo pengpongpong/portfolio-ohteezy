@@ -1,10 +1,13 @@
 ---
 import type { SanityImage } from "@utils/utils";
+
+import { HeroImage } from "@components/hero/HeroImage";
 import HeroMain from "@components/hero/HeroMain";
 import IntroSpan from "@components/hero/IntroSpan.astro";
 
 type Props = {
   outlinedImage: SanityImage;
+  image: SanityImage;
   heroText: {
     first: string;
     second: string;
@@ -13,19 +16,27 @@ type Props = {
   };
 };
 
-const { outlinedImage, heroText }: Props = Astro.props;
+const { outlinedImage, heroText, image }: Props = Astro.props;
 ---
 
-<section
-  aria-label="Landingpage"
-  class="3xl:mx-8
+<main
+  class="mx-8
+          xl:mx-16
+          flex
+          flex-col
+          flex-grow"
+>
+  <HeroImage image={image} />
+  <section
+    aria-label="Landingpage"
+    class="3xl:mx-8
         h-fit
         xl:h-[40vh]
         select-none"
-  id="heroContainer"
->
-  <p
-    class="my-auto
+    id="heroContainer"
+  >
+    <p
+      class="my-auto
           mx-8
           h-[60px]
           xl:h-[150px]
@@ -43,41 +54,42 @@ const { outlinedImage, heroText }: Props = Astro.props;
           md:text-2xl
           xl:text-5xl
           animate-[hideVisibility_1s_3.5s_linear_forwards]"
-  >
-    <IntroSpan introAnimation="animate-[slideInOut_4s_ease-in-out_forwards]">
-      Hallo,
-    </IntroSpan>{" "}
-    <IntroSpan
-      introAnimation="animate-[slideInOut_4s_0.1s_ease-in-out_forwards]"
     >
-      Mein Name
-    </IntroSpan>{" "}
-    <IntroSpan
-      introAnimation="animate-[slideInOut_4s_0.2s_ease-in-out_forwards]"
-    >
-      ist
-    </IntroSpan>{" "}
-    <IntroSpan
-      introAnimation="animate-[slideInOut_4s_0.3s_ease-in-out_forwards]"
-    >
-      Martin
-    </IntroSpan>
-    <br />
-    <IntroSpan
-      introAnimation="animate-[slideInOut_4s_0.4s_ease-in-out_forwards]"
-    >
-      Hello,
-    </IntroSpan>{" "}
-    <IntroSpan
-      introAnimation="animate-[slideInOut_4s_0.5s_ease-in-out_forwards]"
-    >
-      I&apos;m
-    </IntroSpan>{" "}
-    <IntroSpan
-      introAnimation="animate-[slideInOut_4s_0.6s_ease-in-out_forwards]"
-    >
-      Martin
-    </IntroSpan>
-  </p>
-  <HeroMain image={outlinedImage} heroText={heroText} client:idle />
-</section>
+      <IntroSpan introAnimation="animate-[slideInOut_4s_ease-in-out_forwards]">
+        Hallo,
+      </IntroSpan>{" "}
+      <IntroSpan
+        introAnimation="animate-[slideInOut_4s_0.1s_ease-in-out_forwards]"
+      >
+        Mein Name
+      </IntroSpan>{" "}
+      <IntroSpan
+        introAnimation="animate-[slideInOut_4s_0.2s_ease-in-out_forwards]"
+      >
+        ist
+      </IntroSpan>{" "}
+      <IntroSpan
+        introAnimation="animate-[slideInOut_4s_0.3s_ease-in-out_forwards]"
+      >
+        Martin
+      </IntroSpan>
+      <br />
+      <IntroSpan
+        introAnimation="animate-[slideInOut_4s_0.4s_ease-in-out_forwards]"
+      >
+        Hello,
+      </IntroSpan>{" "}
+      <IntroSpan
+        introAnimation="animate-[slideInOut_4s_0.5s_ease-in-out_forwards]"
+      >
+        I&apos;m
+      </IntroSpan>{" "}
+      <IntroSpan
+        introAnimation="animate-[slideInOut_4s_0.6s_ease-in-out_forwards]"
+      >
+        Martin
+      </IntroSpan>
+    </p>
+    <HeroMain image={outlinedImage} heroText={heroText} client:idle />
+  </section>
+</main>

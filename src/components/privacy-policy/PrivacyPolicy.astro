@@ -1,0 +1,37 @@
+---
+import { ShowCookieModal } from "@components/cookie-banner/CookieBanner";
+import type { Lang } from "@utils/utils";
+
+type Props = {
+    headline: string;
+    firstText: string;
+    secondText: string;
+    lang: Lang;
+};
+
+const { headline, firstText, secondText, lang }: Props = Astro.props;
+---
+
+<main
+    class="m-8
+            xl:m-16
+            flex-grow
+            font-poppins"
+>
+    <header class="mb-8">
+        <h1 class="mb-4 text-4xl">
+            {headline}
+        </h1>
+        <p>{firstText}</p>
+        <p>{secondText}</p>
+    </header>
+    <slot />
+
+    <ShowCookieModal styles="w-fit" client:visible>
+        {
+            lang === "en"
+                ? "Change Cookie Settings"
+                : "Cookie Einstellungen anpassen"
+        }
+    </ShowCookieModal>
+</main>

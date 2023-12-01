@@ -27,10 +27,25 @@ type Props = {
 const { data, lang, headline }: Props = Astro.props;
 ---
 
-<main class="mb-8 ml-8 mr-8 xl:mb-16 xl:ml-16 xl:mr-16 flex-grow">
+<main
+    class="mb-8
+            ml-8
+            mr-8
+            xl:mb-16
+            xl:ml-16
+            xl:mr-16
+            flex-grow"
+>
     <WorkReturnButton lang={lang} />
     <h1
-        class="mb-8 xl:mb-16 font-poppins text-center text-3xl sm:text-4xl md:text-5xl xl:text-6xl"
+        class="mb-8
+                xl:mb-16
+                font-poppins
+                text-center
+                text-3xl
+                sm:text-4xl
+                md:text-5xl
+                xl:text-6xl"
     >
         {headline}
     </h1>
@@ -46,6 +61,8 @@ const { data, lang, headline }: Props = Astro.props;
             class="mb-4
                 flex
                 flex-col
+                justify-center
+                items-center
                 flex-wrap
                 sm:flex-row
                 gap-4"
@@ -58,7 +75,11 @@ const { data, lang, headline }: Props = Astro.props;
                                 width={1440}
                                 height={2560}
                                 loading="eager"
-                                class="w-fit xl:w-[24rem] h-fit object-contain flex-1"
+                                class="w-fit 
+                                        xl:w-[24rem] 
+                                        h-fit 
+                                        object-contain
+                                        md:flex-1"
                                 src={urlFor(obj.image).size(2800, 4000).url()}
                                 alt={obj.imageAlt}
                             />
@@ -67,7 +88,16 @@ const { data, lang, headline }: Props = Astro.props;
                 })
             }
         </div>
-        <div class="flex flex-col xl:flex-row gap-4 flex-wrap">
+        <div
+            class="flex
+                    flex-col
+                    justify-center
+                    items-center
+                    xl:flex-row
+                    gap-4
+                    flex-wrap
+                    md:flex-1"
+        >
             {
                 data.poster?.map((obj) => {
                     if (obj._type === "posterImageBig") {
@@ -76,7 +106,7 @@ const { data, lang, headline }: Props = Astro.props;
                                 width={2560}
                                 height={2560}
                                 loading="eager"
-                                class="w-[49rem] h-fit object-contain flex-1"
+                                class="w-[49rem] h-fit object-contain"
                                 src={urlFor(obj.image).size(2560, 2560).url()}
                                 alt={obj.imageAlt}
                             />

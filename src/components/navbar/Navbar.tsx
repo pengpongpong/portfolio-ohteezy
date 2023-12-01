@@ -49,19 +49,33 @@ const NavList = ({ pathname, path, title, styles, checked, slideInAnimation, sli
   const paths = lang === "en" ? pathname.match(pathRegExEN) ?? "" : pathname.match(pathRegExDE) ?? ""
 
   return (
-    <li className="w-fit mb-6 xl:mb-8 cursor-pointer overflow-hidden focus-within:outline-1 focus-within:outline">
+    <li className="
+                  w-fit 
+                  mb-6 
+                  xl:mb-8 
+                  cursor-pointer 
+                  overflow-hidden 
+                  focus-within:outline-1 
+                  focus-within:outline"
+    >
       <a href={lang === "en" ? path.en : path.de}
         aria-label={lang === "en" ? aria.en : aria.de}
-        className={`inline-block text-3xl xl:text-8xl
-        ${styles}
-        ${checked ? `translate-y-[25vh] ${slideInAnimation}` : `translate-y-0 ${slideOutAnimation}`} 
-        ${lang === "en"
-            ? paths[0] === path.en
-              ? "font-poppins"
-              : "font-outline"
-            : paths[0] === path.de
-              ? "font-poppins"
-              : "font-outline"}`}>
+        className={`
+                    inline-block 
+                    text-3xl 
+                    xl:text-8xl
+                    ${styles}
+                    ${checked
+                          ? `translate-y-[25vh] ${slideInAnimation}` 
+                          : `translate-y-0 ${slideOutAnimation}`} 
+                    ${lang === "en"
+                        ? paths[0] === path.en
+                          ? "font-poppins"
+                          : "font-outline"
+                        : paths[0] === path.de
+                          ? "font-poppins"
+                          : "font-outline"}`}
+      >
         {title}
       </a>
     </li>
@@ -71,14 +85,31 @@ const NavList = ({ pathname, path, title, styles, checked, slideInAnimation, sli
 // overlay stripes
 const Stripe = ({ checked = false, fullHeightAnimation, noHeightAnimation }: StripeProps) => {
   return (
-    <div className={`w-1/5 bg-black ${checked ? `h-0 ${fullHeightAnimation}` : `h-screen ${noHeightAnimation}`}`}></div>
+    <div className={`
+                  w-1/5 
+                  bg-black 
+                  ${checked ? `h-0 ${fullHeightAnimation}` : `h-screen ${noHeightAnimation}`}`}
+    ></div>
   )
 }
 
 //nav menu image 
 const NavImage = ({ styles, checked, slideInAnimation, slideOutAnimation, imgSrc, alt }: NavImageProps) => {
   return (
-    <img className={`xl:mt-12 h-[300px] xl:w-[500px] xl:h-[650px] object-cover ${styles} ${checked ? slideInAnimation : slideOutAnimation}`} src={urlFor(imgSrc).size(500, 650).url()} alt={alt} />
+    <img className={`
+                    xl:mt-12 
+                    h-[300px] 
+                    xl:w-[500px] 
+                    xl:h-[650px] 
+                    object-cover 
+                    ${styles} 
+                    ${checked 
+                      ? slideInAnimation 
+                      : slideOutAnimation}`
+                    } 
+          src={urlFor(imgSrc).size(500, 650).url()} 
+          alt={alt} 
+    />
   )
 }
 
@@ -95,10 +126,10 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
     const handleKeyPress: KeyboardEventHandler<HTMLLabelElement> = (event) => {
 
       // handle Enter and Space key
-      if ((event.keyCode === 13 || event.keyCode === 32) && checked === true) {
+      if ((event.key === "Enter" || event.key === " ") && checked === true) {
         setChecked(false)
         handleMenu()
-      } else if (event.key === "Enter") {
+      } else if (event.key === "Enter" || event.key === " ") {
         setChecked(true)
         handleMenu()
       }
@@ -121,7 +152,12 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
         aria-label={lang === "en" ? "open/close nav-menu" : "öffne/schließe Navigationsmenü"}
         onClick={handleMenu}
         onKeyDown={handleKeyPress}>
-        <input type="checkbox" className="sr-only peer" defaultChecked={checked} id="burger" />
+        <input
+          type="checkbox" 
+          className="sr-only peer" 
+          defaultChecked={checked} 
+          id="burger" 
+        />
         <span className={`
                       w-full 
                       h-0.5 
@@ -240,7 +276,10 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
                 xl:gap-0"
       >
         {navData.logo
-          ? <a href={lang === "en" ? "/en" : "/"} aria-label={lang === "en" ? "go to home page" : "gehe zur Home Seite"}>
+          ? <a 
+              href={lang === "en" ? "/en" : "/"} 
+              aria-label={lang === "en" ? "go to home page" : "gehe zur Home Seite"}
+          >
             <img
               width={100}
               height={22}

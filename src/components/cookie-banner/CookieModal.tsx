@@ -1,14 +1,22 @@
-import { type ReactElement, type Ref, forwardRef, useEffect, useRef } from 'react';
+import { type ReactElement, type Ref, forwardRef, useEffect, useRef, type ForwardedRef } from 'react';
 
 import type { TransitionProps } from '@mui/material/transitions';
 import { ThemeProvider, createTheme, Slide, DialogContent, Dialog } from "@mui/material";
 
 import { setOpen, setShowBanner, useConsentStore } from "@utils/store";
 import { deleteCookie, getCookie, setCookie, setLocalStorage, type Lang } from "@utils/utils";
+import { CookieBannerButton } from "./CookieBanner";
 
 // styles for dialog modal
 const theme = createTheme({
     components: {
+        MuiDialogContent: {
+            styleOverrides: {
+                root: {
+                    padding: "0 1rem 1rem 1rem",
+                }
+            }
+        },
         MuiDialog: {
             styleOverrides: {
                 paper: {
@@ -95,6 +103,66 @@ export const setCookies = (functionalChecked?: boolean, analyticChecked?: boolea
         deleteCookie("cookie-advertisement")
     };
 }
+
+// cookie icon
+const CookieIconModal = () => {
+    return (
+        <CookieIcon style="
+                            fill-black 
+                            group-hover:fill-white 
+                            transition 
+                            duration-300 
+                            ease-in-out"
+        />
+    )
+}
+
+type FieldsetProps = {
+    headline: string;
+    text: string;
+    disabled?: boolean;
+    checked?: boolean;
+}
+
+// form fieldset
+const Fieldset = forwardRef(function Fieldset(props: FieldsetProps, ref?: ForwardedRef<HTMLInputElement>) {
+    return (
+        <fieldset>
+            <label className="
+                                mb-2 
+                                mt-4 
+                                daisy_label 
+                                cursor-pointer 
+                                font-bold"
+            >
+                <span className="
+                                daisy_label-text 
+                                text-white 
+                                text-xl"
+                >
+                    {props.headline}
+                </span>
+                <input
+                    type="checkbox"
+                    name="checkbox"
+                    className="
+                                daisy_checkbox 
+                                daisy_checkbox-primary"
+                    checked={props.checked}
+                    disabled={props.disabled}
+                    ref={ref}
+                />
+            </label>
+            <p
+                className="
+                            w-4/5 
+                            ml-3"
+            >
+                {props.text}
+            </p>
+        </fieldset>
+    )
+})
 
 export default function CookieModal({ lang }: { lang: Lang }) {
     const open = useConsentStore(state => state.open) // open state for dialog modal
@@ -202,58 +270,90 @@ export default function CookieModal({ lang }: { lang: Lang }) {
                     onClose={handleClose}
                     aria-describedby="cookie-preference-setting"
                 >
-                    <button onClick={handleClose} className="absolute top-4 right-4 lg:hidden">
+                    <button
+                        onClick={handleClose}
+                        className="
+                                    absolute 
+                                    top-2 
+                                    right-2 
+                                    lg:hidden"
+                    >
                         <svg xmlns="http://www.w3.org/2000/svg" className="fill-white" width="35" height="35" viewBox="0 0 24 24">
                             <path d="M9.172 16.242 12 13.414l2.828 2.828 1.414-1.414L13.414 12l2.828-2.828-1.414-1.414L12 10.586 9.172 7.758 7.758 9.172 10.586 12l-2.828 2.828z" />
                             <path d="M12 22c5.514 0 10-4.486 10-10S17.514 2 12 2 2 6.486 2 12s4.486 10 10 10zm0-18c4.411 0 8 3.589 8 8s-3.589 8-8 8-8-3.589-8-8 3.589-8 8-8z" />
                         </svg>
                     </button>
-                    <h1 className="my-4 text-center text-4xl font-bold tracking-widest" id="cookie-preference-setting">{data?.headline}</h1>
+                    <h1 className="
+                                    mt-8
+                                    mb-2
+                                    font-bold 
+                                    text-center 
+                                    text-2xl 
+                                    tracking-widest"
+                        id="cookie-preference-setting">
+                        {data?.headline}
+                    </h1>
                     <DialogContent>
                         <form>
-                            <fieldset>
-                                <label className="cursor-pointer daisy_label mb-2 mt-4 font-bold">
-                                    <span className="daisy_label-text text-white text-xl">{data?.requiredCookieHeadline}</span>
-                                    <input type="checkbox" name="checkbox" className="daisy_checkbox daisy_checkbox-primary" checked disabled />
-                                </label>
-                                <p className="w-4/5 ml-3">{data?.requiredCookieText}</p>
-                            </fieldset>
-                            <fieldset>
-                                <label className="cursor-pointer daisy_label mb-2 mt-4 font-bold">
-                                    <span className="daisy_label-text text-white text-xl">{data?.functionalCookieHeadline}</span>
-                                    <input type="checkbox" name="checkbox" className="daisy_checkbox daisy_checkbox-primary" ref={functionalRef} />
-                                </label>
-                                <p className="w-4/5 ml-3">{data?.functionalCookieText}</p>
-                            </fieldset>
-                            <fieldset>
-                                <label className="cursor-pointer daisy_label mb-2 mt-4 font-bold">
-                                    <span className="daisy_label-text text-white text-xl">{data?.analyticsCookieHeadline}</span>
-                                    <input type="checkbox" name="checkbox" className="daisy_checkbox daisy_checkbox-primary" ref={analyticsRef} />
-                                </label>
-                                <p className="w-4/5 ml-3">{data?.analyticsCookieText}</p>
-                            </fieldset>
-                            <fieldset>
-                                <label className="cursor-pointer daisy_label mb-2 mt-4 font-bold">
-                                    <span className="daisy_label-text text-white text-xl">{data?.advertisingCookieHeadline}</span>
-                                    <input type="checkbox" name="checkbox" className="daisy_checkbox daisy_checkbox-primary" ref={advertisementRef} />
-                                </label>
-                                <p className="w-4/5 ml-3">{data?.advertisingCookieText}</p>
-                            </fieldset>
+                            <Fieldset
+                                headline={data?.requiredCookieHeadline}
+                                text={data?.requiredCookieText}
+                                checked
+                                disabled
+                            />
+                            <Fieldset
+                                headline={data?.functionalCookieHeadline}
+                                text={data?.functionalCookieText}
+                                ref={functionalRef}
+                            />
+                            <Fieldset
+                                headline={data?.analyticsCookieHeadline}
+                                text={data?.analyticsCookieText}
+                                ref={analyticsRef}
+                            />
+                            <Fieldset
+                                headline={data?.advertisingCookieHeadline}
+                                text={data?.advertisingCookieText}
+                                ref={advertisementRef}
+                            />
                         </form>
                     </DialogContent>
-                    <div className="p-4 flex flex-col lg:flex-row-reverse lg:justify-center gap-4">
-                        <button className="group text-sm h-8 py-6 px-4 flex justify-center items-center gap-1 bg-white text-black hover:bg-orange hover:text-white transition-colors duration-200 ease-in-out font-poppins rounded-full" onClick={handleAcceptAll}>
-                            {lang === "en" ? "Accept" : "Akzeptiere"}
-                            <CookieIcon style="fill-black group-hover:fill-white transition duration-300 ease-in-out" />
-                        </button>
-                        <button className="group whitespace-nowrap text-sm h-8 py-6 px-4 flex justify-center items-center gap-1 bg-white text-black hover:bg-orange hover:text-white transition-colors duration-200 ease-in-out font-poppins rounded-full" onClick={handleAcceptSettings}>
-                            {lang === "en" ? "Save Settings" : "Speichere Einstellung"}
-                            <CookieIcon style="fill-black group-hover:fill-white transition duration-300 ease-in-out" />
-                        </button>
-                        <button className="group text-sm h-8 py-6 px-4 flex justify-center items-center gap-1 bg-white text-black hover:bg-orange hover:text-white transition-colors duration-200 ease-in-out font-poppins rounded-full" onClick={handleDeny}>
-                            {lang === "en" ? "Deny" : "Ablehnen"}
-                            <CookieIcon style="fill-black group-hover:fill-white transition duration-300 ease-in-out" />
-                        </button>
+                    <div className="
+                                    p-8 
+                                    flex 
+                                    flex-col 
+                                    gap-4
+                                    lg:flex-row 
+                                    lg:justify-center"
+                    >
+                        <CookieBannerButton
+                            styles="w-full"
+                            onClick={handleDeny}
+                        >
+                            {lang === "en"
+                                ? "Deny"
+                                : "Ablehnen"}
+                            <CookieIconModal />
+                        </CookieBannerButton>
+                        <CookieBannerButton
+                            styles="w-full"
+                            onClick={handleAcceptSettings}
+                        >
+                            {lang === "en"
+                                ? "Save Settings"
+                                : "Speichere Einstellung"}
+                            <CookieIconModal />
+                        </CookieBannerButton>
+                        <CookieBannerButton
+                            styles="w-full"
+                            onClick={handleAcceptAll}
+                        >
+                            {lang === "en"
+                                ? "Accept"
+                                : "Akzeptiere"}
+                            <CookieIconModal />
+                        </CookieBannerButton>
+
                     </div>
                 </Dialog>
             </ThemeProvider>

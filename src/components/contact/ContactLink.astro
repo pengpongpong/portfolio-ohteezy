@@ -4,16 +4,25 @@ type Props = {
   anchorHref: string;
   aria: { de: string; en: string };
   lang: Lang;
+  target: string;
 };
-const { anchorHref, aria, lang }: Props = Astro.props;
+const { anchorHref, aria, lang, target }: Props = Astro.props;
 ---
 
 <a
   href={anchorHref}
-  class="w-fit flex gap-2 items-center group hover:text-orange transition-colors duration-200 ease-in-out"
-  rel="noreferrer noopener"
+  class="w-fit
+        flex
+        gap-2
+        items-center
+        group
+        hover:text-orange
+        transition-colors
+        duration-200
+        ease-in-out"
+  rel={target === "_blank" ? "noreferrer noopener" : ""}
   aria-label={lang === "en" ? aria.en : aria.de}
-  target="_blank"
+  target={target}
 >
   <slot />
 </a>

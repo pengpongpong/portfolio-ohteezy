@@ -9,7 +9,12 @@ import PropagateLoader from "react-spinners/PropagateLoader"
 
 
 const ErrorText = ({ text }: { text?: string }) => {
-    return <p className="mb-2 font-text text-error text-center">{text}</p>
+    return <p className="mb-2 
+                        font-text 
+                        text-error 
+                        text-center">
+        {text}
+    </p>
 }
 
 // telephone check
@@ -91,17 +96,23 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
 
                     // handle error
                     if (message === "Required fields missing") {
-                        const error = lang === "en" ? "Error - Required fields missing!" : "Fehler - Erforderliche Felder fehlen!"
+                        const error = lang === "en"
+                            ? "Error - Required fields missing!"
+                            : "Fehler - Erforderliche Felder fehlen!"
                         setMessage(error)
                         setLoading(false)
                     } else if (message === "Invalid email") {
-                        const error = lang === "en" ? "Error - Invalid email!" : "Fehler - Ungültige Email!"
+                        const error = lang === "en"
+                            ? "Error - Invalid email!"
+                            : "Fehler - Ungültige Email!"
                         setMessage(error)
                         setLoading(false)
 
                         // handle success
                     } else if (message === "success") {
-                        const success = lang === "en" ? "Message sent!" : "Kontaktanfrage gesendet!"
+                        const success = lang === "en"
+                            ? "Message sent!"
+                            : "Kontaktanfrage gesendet!"
                         setMessage(success)
                         reset()
                         setLoading(false)
@@ -115,10 +126,23 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
     }
 
     return (
-        <form onSubmit={onSubmit} className="max-w-[600px]">
-            <fieldset className="font-text flex flex-col gap-4">
+        <form
+            onSubmit={onSubmit}
+            className="max-w-[600px]"
+        >
+            <fieldset className="font-text 
+                                flex 
+                                flex-col 
+                                gap-4"
+            >
                 <label htmlFor="name">Name</label>
-                <input type="text" placeholder={lang === "en" ? "Your name" : "Dein Name"} autoComplete="name" className={`${styles.input}`} {...register("name")} />
+                <input
+                    type="text"
+                    placeholder={lang === "en" ? "Your name" : "Dein Name"}
+                    autoComplete="name"
+                    className={`${styles.input}`}
+                    {...register("name")}
+                />
                 {errors?.name && <ErrorText text={errors?.name?.message} />}
 
                 <Controller
@@ -126,31 +150,116 @@ const ContactForm = ({ api, url, lang }: { api: string, url: string, lang: Lang 
                     name="select"
                     render={({ field: { onChange } }) => (
                         <>
-                            <label htmlFor="select">{lang === "en" ? "How would you like to be contacted?" : "Wie möchtest du kontaktiert werden?"}</label>
-                            <select name="type" className={`${styles.input} appearance-none selectArrow`} onChange={onChange} defaultValue={lang === "en" ? "How would you like to be contacted?" : "Wie möchtest du kontaktiert werden?"}>
-                                <option disabled>{lang === "en" ? "How would you like to be contacted?" : "Wie möchtest du kontaktiert werden?"}</option>
+                            <label htmlFor="select">
+                                {lang === "en"
+                                    ? "How would you like to be contacted?"
+                                    : "Wie möchtest du kontaktiert werden?"}
+                            </label>
+                            <select
+                                name="type"
+                                className={`${styles.input} appearance-none selectArrow`}
+                                onChange={onChange}
+                                defaultValue={lang === "en"
+                                    ? "How would you like to be contacted?"
+                                    : "Wie möchtest du kontaktiert werden?"}
+                            >
+                                <option disabled>
+                                    {lang === "en"
+                                        ? "How would you like to be contacted?"
+                                        : "Wie möchtest du kontaktiert werden?"}
+                                </option>
                                 <option value="email">Email</option>
-                                <option value="call">{lang === "en" ? "Call" : "Anruf"}</option>
+                                <option value="call">
+                                    {lang === "en"
+                                        ? "Call"
+                                        : "Anruf"}
+                                </option>
                             </select>
                             {errors?.select && <ErrorText text={errors?.select?.message} />}
                         </>
                     )}
                 />
 
-                {watchSelect === "email" ? <input type="text" placeholder={lang === "en" ? "your@email.com" : "deine@email.com"} autoComplete="email" className={`${styles.input}`} {...register("email")} /> : ""}
+                {watchSelect === "email"
+                    ? <input
+                        type="text"
+                        placeholder={lang === "en"
+                            ? "your@email.com"
+                            : "deine@email.com"}
+                        autoComplete="email"
+                        className={`${styles.input}`}
+                        {...register("email")}
+                    />
+                    : ""}
                 {errors?.email && <ErrorText text={errors?.email?.message} />}
 
-                {watchSelect === "call" ? <input type="text" placeholder={lang === "en" ? "Your phone number" : "Deine Telefonnummer"} autoComplete="tel" className={`${styles.input}`} {...register("call")} /> : ""}
+                {watchSelect === "call"
+                    ? <input
+                        type="text"
+                        placeholder={lang === "en"
+                            ? "Your phone number"
+                            : "Deine Telefonnummer"}
+                        autoComplete="tel"
+                        className={`${styles.input}`}
+                        {...register("call")}
+                    />
+                    : ""}
                 {errors?.call && watchSelect && <ErrorText text={errors?.call?.message} />}
-                <label htmlFor="message">{lang === "en" ? "Leave me a message" : "Hinterlasse mir eine Nachricht"}</label>
-                <textarea className={`${styles.input}`} rows={6} placeholder={lang === "en" ? "Leave me a message" : "Hinterlasse mir eine Nachricht"} {...register("message")} />
+                <label
+                    htmlFor="message">
+                    {lang === "en"
+                        ? "Leave me a message"
+                        : "Hinterlasse mir eine Nachricht"}
+                </label>
+                <textarea
+                    className={`${styles.input}`}
+                    rows={6}
+                    placeholder={lang === "en"
+                        ? "Leave me a message"
+                        : "Hinterlasse mir eine Nachricht"}
+                    {...register("message")}
+                />
             </fieldset>
 
-            <button className="w-full p-3 mt-12 border rounded-full bg-white text-black box-shadow tracking-wider hover:bg-orange hover:text-white hover:border-orange transition-color duration-300 ease-in-out" type="submit">{lang === "en" ? "Send" : "Abschicken"}</button>
-            {loading ? <div className="mt-4 flex justify-center items-center">
-                <PropagateLoader color="rgb(253, 81, 49)" />
-            </div> : null}
-            {message !== "" ? <p className="text-center my-4 tracking-wide font-text">{message}</p> : ""}
+            <button className="
+                                w-full 
+                                mt-12 
+                                p-3 
+                                border 
+                                rounded-full 
+                                bg-white 
+                                text-black 
+                                box-shadow 
+                                tracking-wider 
+                                hover:bg-orange 
+                                hover:text-white 
+                                hover:border-orange 
+                                transition-color 
+                                duration-300 
+                                ease-in-out"
+                type="submit">{lang === "en"
+                    ? "Send"
+                    : "Abschicken"}
+            </button>
+            {loading
+                ? <div className="
+                                    mt-4 
+                                    flex 
+                                    justify-center 
+                                    items-center"
+                >
+                    <PropagateLoader color="rgb(253, 81, 49)" />
+                </div>
+                : null}
+            {message !== ""
+                ? <p className="text-center 
+                                my-4 
+                                tracking-wide 
+                                font-text"
+                >
+                    {message}
+                </p>
+                : ""}
         </form>
     )
 }

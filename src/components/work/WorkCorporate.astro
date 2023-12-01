@@ -39,10 +39,24 @@ type Props = {
 const { data, lang, headline }: Props = Astro.props;
 ---
 
-<main class="mb-8 ml-8 mr-8 xl:mb-16 xl:ml-16 xl:mr-16 flex-grow">
+<main
+    class="mb-8
+            ml-8
+            mr-8
+            xl:mb-16
+            xl:ml-16
+            xl:mr-16
+            flex-grow"
+>
     <WorkReturnButton lang={lang} />
     <h1
-        class="mb-8 font-poppins text-center text-3xl sm:text-4xl md:text-5xl xl:text-6xl"
+        class="mb-8
+                font-poppins
+                text-center
+                text-3xl
+                sm:text-4xl
+                md:text-5xl
+                xl:text-6xl"
     >
         {headline}
     </h1>
@@ -75,7 +89,12 @@ const { data, lang, headline }: Props = Astro.props;
                 }
             })
         }
-        <hr class="my-8 xl:my-16 max-w-[2000px] mx-auto" />
+        <hr
+            class="my-8
+                    xl:my-16
+                    max-w-[2000px]
+                    mx-auto"
+        />
         {
             data.projects?.map((obj) => {
                 if (obj._type === "projectBig") {
