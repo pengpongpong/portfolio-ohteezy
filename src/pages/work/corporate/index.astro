@@ -5,7 +5,9 @@ import NavbarMenu, { type NavData } from "@components/navbar/Navbar";
 import Footer from "@components/footer/Footer.astro";
 
 import { getNavbar, getWorkCorporate } from "@utils/query";
-import WorkCorporate, { type WorkCorporateType } from "@components/work/WorkCorporate.astro";
+import WorkCorporate, {
+    type WorkCorporateType,
+} from "@components/work/WorkCorporate.astro";
 
 interface WorkCorporateData extends WorkCorporateType {
     seo: Seo;
@@ -32,11 +34,6 @@ const seo = {
         client:load
         transition:persist="navbar"
     />
-    <main class="m-8 xl:m-24 flex-grow">
-        <h1 class="mb-8 xl:mb-12 font-poppins text-center text-4xl xl:text-6xl">
-            Corporate Design
-        </h1>
-        <WorkCorporate data={data} />
-    </main>
+    <WorkCorporate data={data} lang="de" headline="Corporate Design" />
     <Footer lang="de" />
 </Layout>

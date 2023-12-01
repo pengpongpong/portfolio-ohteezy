@@ -10,10 +10,22 @@ type WorkLinkProps = {
     enterHover: () => void;
     exitHover: () => void;
 }
-
+//!
 const WorkLink = ({ url, title, styles, animation, lang, enterHover, exitHover }: WorkLinkProps) => {
     return (
-        <li className={`h-[3.5rem] overflow-hidden ${styles} text-4xl xl:text-5xl cursor-pointer hover:text-orange transition-all duration-200 ease-in-out focus-within:outline-1 focus-within:outline`}
+        <li className={`
+        h-[3.5rem] 
+        overflow-hidden 
+        ${styles} 
+        text-4xl 
+        xl:text-5xl 
+        cursor-pointer 
+        hover:text-orange 
+        transition-all 
+        duration-200 
+        ease-in-out 
+        focus-visible:outline-1 
+        focus-visible:outline`}
             onMouseEnter={enterHover}
             onMouseLeave={exitHover}>
             <a className={`inline-block translate-y-[25rem] ${animation} motion-reduce:translate-y-0 motion-reduce:animate-none`} href={`${lang === "en" ? "/en" : ""}${url}`}>{title}</a>
@@ -32,9 +44,25 @@ const Work = ({ lang }: { lang: Lang }) => {
     }
 
     return (
-        <main className="m-8 xl:m-16 flex justify-center items-center flex-grow font-poppins overflow-hidden">
-            <section aria-label={lang === "en" ? "Projects" : "Projekte"} className="flex justify-center items-center ">
-                <ul className="w-max h-fit grid place-content-center">
+        <main
+            className="
+                        m-8 
+                        xl:m-16 
+                        flex 
+                        justify-center 
+                        items-center 
+                        flex-grow 
+                        font-poppins 
+                        overflow-hidden"
+        >
+            <section aria-label={lang === "en" ? "Projects" : "Projekte"} className="flex justify-center items-center">
+                <ul
+                    className="
+                                w-max 
+                                h-fit 
+                                grid 
+                                place-content-center"
+                >
                     <WorkLink
                         url="/work/corporate"
                         title="corporate"

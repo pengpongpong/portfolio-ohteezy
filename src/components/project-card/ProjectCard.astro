@@ -1,5 +1,4 @@
 ---
-
 interface Props {
   leftImageText: string;
   leftImageSrc: string;
@@ -17,17 +16,58 @@ const {
   rightImageSrc,
   rightImageAlt,
 }: Props = Astro.props;
-
 ---
 
 <div
-  class="max-w-[2000px] mx-auto xl:w-full flex flex-col justify-center items-center gap-12 xl:flex-row xl:gap-8"
+class="xl:w-full
+        max-w-[2000px]
+        mx-auto
+        flex
+        flex-col
+        justify-center
+        items-center
+        gap-12
+        xl:flex-row
+        xl:gap-8"
 >
-  <div class="w-auto relative">
-    <p class="mb-2 font-poppins tracking-wide">{leftImageText}</p>
-    <img width={2560} height={1440} loading="eager" class="w-full h-auto xl:h-[40rem]" src={leftImageSrc} alt={leftImageAlt} />
+  <div
+    class="w-auto
+            relative
+            flex
+            flex-col"
+  >
+    <p class="mb-2
+              font-poppins
+              tracking-wide">
+      {leftImageText}
+    </p>
+    <img
+      width={2560}
+      height={1440}
+      loading="eager"
+      class="w-full
+            h-auto
+            xl:h-[40rem]
+            flex-1"
+      src={leftImageSrc}
+      alt={leftImageAlt}
+    />
     <svg
-      class="my-2 w-[100px] xl:w-[150px] h-[100px] -rotate-90 -scale-x-100 absolute -bottom-24 xl:bottom-auto -left-10 xl:left-auto xl:-top-6 xl:-right-24 xl:-rotate-[10deg] xl:scale-x-100"
+      class="my-2
+              w-[100px]
+              xl:w-[150px]
+              h-[100px]
+              -rotate-90
+              -scale-x-100
+              absolute
+              -bottom-24
+              xl:bottom-auto
+              -left-10
+              xl:left-auto
+              xl:-top-6
+              xl:-right-24
+              xl:-rotate-[10deg]
+              xl:scale-x-100"
       viewBox="0 0 408 84"
       version="1.1"
       width="408"
@@ -46,10 +86,32 @@ const {
       />
     </svg>
   </div>
-  <div class="xl:mt-8 w-auto flex flex-col xl:flex-col-reverse">
-    <p class="mb-2 xl:mb-0 xl:mt-2 font-poppins tracking-wide text-right">
+  <div
+    class="xl:w-auto
+            mt-8
+            flex
+            flex-col
+            xl:flex-col-reverse"
+  >
+    <p
+      class="mb-2
+              xl:mb-0
+              xl:mt-2
+              font-poppins
+              tracking-wide
+              text-right"
+    >
       {rightImageText}
     </p>
-    <img width={2560} height={1440}  class="w-full h-auto xl:h-[40rem]" src={rightImageSrc} alt={rightImageAlt} />
+    <img
+      width={2560}
+      height={1440}
+      class="w-full
+            h-auto
+            xl:h-[40rem]
+            flex-1"
+      src={rightImageSrc}
+      alt={rightImageAlt}
+    />
   </div>
 </div>

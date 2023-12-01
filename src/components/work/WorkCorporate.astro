@@ -1,13 +1,16 @@
 ---
-import { urlFor, type SanityImage } from "@utils/utils";
+import { urlFor, type SanityImage, type Lang } from "@utils/utils";
+import WorkReturnButton from "@components/work/WorkReturnButton.astro";
 import ProjectCard from "@components/project-card/ProjectCard.astro";
 import ProjectCardBig from "@components/project-card/ProjectCardBig.astro";
 
 type ProjectSmall = {
     leftImageText: string;
+    leftImageTextEN: string;
     leftImageAlt: string;
     leftImage: SanityImage;
     rightImageText: string;
+    rightImageTextEN: string;
     rightImageAlt: string;
     rightImage: SanityImage;
     _type: "projectSmall";
@@ -29,51 +32,71 @@ export interface WorkCorporateType {
 
 type Props = {
     data: WorkCorporateType;
+    lang: Lang;
+    headline: string;
 };
 
-const { data }: Props = Astro.props;
+const { data, lang, headline }: Props = Astro.props;
 ---
 
-<div>
-    {
-        data.projects?.map((obj) => {
-            if (obj._type === "projectSmall") {
-                return (
-                    <ProjectCard
-                        leftImageText={obj.leftImageText}
-                        leftImageSrc={urlFor(obj.leftImage)
-                            .size(2560, 1887)
-                            .url()}
-                        leftImageAlt={obj.leftImageAlt}
-                        rightImageText={obj.rightImageText}
-                        rightImageSrc={urlFor(obj.rightImage)
-                            .size(3775, 2967)
-                            .url()}
-                        rightImageAlt={obj.rightImageAlt}
-                    />
-                );
-            }
-        })
-    }
-    <hr class="my-8 xl:my-16 max-w-[2000px] mx-auto" />
-    {
-        data.projects?.map((obj) => {
-            if (obj._type === "projectBig") {
-                return (
-                    <ProjectCardBig
-                        sketch1={urlFor(obj.sketch1Image)
-                            .size(1760, 2400)
-                            .url()}
-                        sketch1Alt={obj.sketch1ImageAlt}
-                        sketch2={urlFor(obj.sketch2Image)
-                            .size(1760, 2400)
-                            .url()}
-                        sketch2Alt={obj.sketch2ImageAlt}
-                        poster={urlFor(obj.posterImage).size(1816, 5800).url()}
-                        posterAlt={obj.posterImageAlt}
-                    />
-                );
-            }
-        })
-    }
-</div>
+<main class="mb-8 ml-8 mr-8 xl:mb-16 xl:ml-16 xl:mr-16 flex-grow">
+    <WorkReturnButton lang={lang} />
+    <h1
+        class="mb-8 font-poppins text-center text-3xl sm:text-4xl md:text-5xl xl:text-6xl"
+    >
+        {headline}
+    </h1>
+    <div>
+        {
+            data.projects?.map((obj) => {
+                if (obj._type === "projectSmall") {
+                    return (
+                        <ProjectCard
+                            leftImageText={
+                                lang === "en"
+                                    ? obj.leftImageTextEN
+                                    : obj.leftImageText
+                            }
+                            leftImageSrc={urlFor(obj.leftImage)
+                                .size(2560, 1887)
+                                .url()}
+                            leftImageAlt={obj.leftImageAlt}
+                            rightImageText={
+                                lang === "en"
+                                    ? obj.rightImageTextEN
+                                    : obj.rightImageText
+                            }
+                            rightImageSrc={urlFor(obj.rightImage)
+                                .size(3775, 2967)
+                                .url()}
+                            rightImageAlt={obj.rightImageAlt}
+                        />
+                    );
+                }
+            })
+        }
+        <hr class="my-8 xl:my-16 max-w-[2000px] mx-auto" />
+        {
+            data.projects?.map((obj) => {
+                if (obj._type === "projectBig") {
+                    return (
+                        <ProjectCardBig
+                            sketch1={urlFor(obj.sketch1Image)
+                                .size(1760, 2400)
+                                .url()}
+                            sketch1Alt={obj.sketch1ImageAlt}
+                            sketch2={urlFor(obj.sketch2Image)
+                                .size(1760, 2400)
+                                .url()}
+                            sketch2Alt={obj.sketch2ImageAlt}
+                            poster={urlFor(obj.posterImage)
+                                .size(1816, 5800)
+                                .url()}
+                            posterAlt={obj.posterImageAlt}
+                        />
+                    );
+                }
+            })
+        }
+    </div>
+</main>

@@ -1,5 +1,6 @@
 ---
-import { urlFor, type SanityImage } from "@utils/utils";
+import { urlFor, type SanityImage, type Lang } from "@utils/utils";
+import WorkReturnButton from "@components/work/WorkReturnButton.astro";
 
 type PosterSmall = {
     imageAlt: string;
@@ -12,52 +13,77 @@ type PosterBig = {
     image: SanityImage;
     _type: "posterImageBig";
 };
+
 export interface WorkPosterType {
     poster: [PosterSmall | PosterBig];
-};
+}
 
 type Props = {
     data: WorkPosterType;
+    lang: Lang;
+    headline: string;
 };
 
-const { data }: Props = Astro.props;
+const { data, lang, headline }: Props = Astro.props;
 ---
 
-<div class="flex flex-col justify-center items-center">
-    <div class="mb-4 flex flex-col xl:flex-row gap-4 flex-wrap">
-        {
-            data.poster?.map((obj) => {
-                if (obj._type === "posterImageSmall") {
-                    return (
-                        <img
-                            width={1440}
-                            height={2560}
-                            loading="eager"
-                            class="w-fit xl:w-[24rem] h-fit object-contain"
-                            src={urlFor(obj.image).size(2800, 4000).url()}
-                            alt={obj.imageAlt}
-                        />
-                    );
-                }
-            })
-        }
+<main class="mb-8 ml-8 mr-8 xl:mb-16 xl:ml-16 xl:mr-16 flex-grow">
+    <WorkReturnButton lang={lang} />
+    <h1
+        class="mb-8 xl:mb-16 font-poppins text-center text-3xl sm:text-4xl md:text-5xl xl:text-6xl"
+    >
+        {headline}
+    </h1>
+    <div
+        class="md:m-4
+            xl:m-0
+            flex
+            flex-col
+            justify-center
+            items-center"
+    >
+        <div
+            class="mb-4
+                flex
+                flex-col
+                flex-wrap
+                sm:flex-row
+                gap-4"
+        >
+            {
+                data.poster?.map((obj) => {
+                    if (obj._type === "posterImageSmall") {
+                        return (
+                            <img
+                                width={1440}
+                                height={2560}
+                                loading="eager"
+                                class="w-fit xl:w-[24rem] h-fit object-contain flex-1"
+                                src={urlFor(obj.image).size(2800, 4000).url()}
+                                alt={obj.imageAlt}
+                            />
+                        );
+                    }
+                })
+            }
+        </div>
+        <div class="flex flex-col xl:flex-row gap-4 flex-wrap">
+            {
+                data.poster?.map((obj) => {
+                    if (obj._type === "posterImageBig") {
+                        return (
+                            <img
+                                width={2560}
+                                height={2560}
+                                loading="eager"
+                                class="w-[49rem] h-fit object-contain flex-1"
+                                src={urlFor(obj.image).size(2560, 2560).url()}
+                                alt={obj.imageAlt}
+                            />
+                        );
+                    }
+                })
+            }
+        </div>
     </div>
-    <div class="flex flex-col xl:flex-row gap-4">
-        {
-            data.poster?.map((obj) => {
-                if (obj._type === "posterImageBig") {
-                    return (
-                        <img
-                            width={2560}
-                            height={2560}
-                            loading="eager"
-                            class="w-[49rem] h-fit object-contain"
-                            src={urlFor(obj.image).size(2560, 2560).url()}
-                            alt={obj.imageAlt}
-                        />
-                    );
-                }
-            })
-        }
-    </div>
-</div>
+</main>
