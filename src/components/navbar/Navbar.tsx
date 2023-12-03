@@ -291,7 +291,7 @@ const NavbarMenu = ({ pathname, navData, contactButtonText, lang }: NavbarMenuPr
                     motion-reduce:translate-y-0 motion-reduce:animate-none`
               }
               src={urlFor(navData.logo).size(2560, 566).url()}
-              alt="oh-teezy logo"
+              alt="Oh Teezy logo"
             />
           </a>
           : ""}

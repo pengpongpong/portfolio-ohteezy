@@ -38,6 +38,7 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.1",
     "@types/node": "^20.5.7",
     "astro-sst": "^2.24.26",
     "aws-cdk-lib": "2.91.0",

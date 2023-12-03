@@ -25,3 +25,7 @@ pnpm-debug.log*
 /__todo__
 
 /.sst
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

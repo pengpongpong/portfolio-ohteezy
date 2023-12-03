@@ -15,6 +15,7 @@ export const HeroImage = ({ image }: { image: SanityImage }) => {
                         translate-x-[150vh]
                         animate-[slideInRight_1s_5s_ease-in-out_forwards]"
             src={urlFor(image).size(2560, 2560).url()}
+            alt="flower"
         />
     )
 }
