@@ -55,8 +55,8 @@ const NavList = ({ pathname, path, title, styles, checked, slideInAnimation, sli
                   xl:mb-8 
                   cursor-pointer 
                   overflow-hidden 
-                  focus-within:outline-1 
-                  focus-within:outline"
+                  focus-visible:outline-1 
+                  focus-visible:outline"
     >
       <a href={lang === "en" ? path.en : path.de}
         aria-label={lang === "en" ? aria.en : aria.de}
